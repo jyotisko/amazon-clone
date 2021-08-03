@@ -4,12 +4,7 @@ const sharp = require('sharp');
 const Product = require('../models/productModel');
 const catchAsync = require('../utils/catchAsync');
 const AppError = require('../utils/AppError');
-
-const multerStorage = multer.memoryStorage();
-const multerFilter = (_, file, cb) => {
-  if (!file.mimetype.startsWith('image')) return cb(new AppError('Not an image! Please upload only images!'), false);
-  cb(null, true);
-};
+const { multerFilter, multerStorage } = require('../utils/multerConfig.js');
 
 const upload = multer({
   storage: multerStorage,
@@ -18,13 +13,13 @@ const upload = multer({
 
 exports.uploadProductImages = upload.fields([
   { name: 'imageMain', maxCount: 1 },
-  { name: 'imageAlternate', maxCount: 6 },
+  { name: 'imageAlternates', maxCount: 6 },
   { name: 'imageBanners', maxCount: 4 }
 ]);
 
 exports.processImages = catchAsync(async (req, _, next) => {
   if (!req.files.imageMain) return next(new AppError('Please provide the main image!', 400));
-  if (!req.files.imageAlternate && !req.files.imageBanners && !req.files.imageMain) return next();
+  if (!req.files.imageAlternates && !req.files.imageBanners && !req.files.imageMain) return next();
 
   // Main Image
   if (req.files.imageMain) {
@@ -38,11 +33,11 @@ exports.processImages = catchAsync(async (req, _, next) => {
   }
 
   // Alternate Images
-  if (req.files.imageAlternate) {
+  if (req.files.imageAlternates) {
     const altImages = [];
 
     await Promise.all(
-      req.files.imageAlternate.map(async (file) => {
+      req.files.imageAlternates.map(async (file) => {
         const filenameAlt = `product-alt-${nanoid(10)}.jpeg`;
 
         await sharp(file.buffer)
@@ -54,7 +49,7 @@ exports.processImages = catchAsync(async (req, _, next) => {
       })
     );
 
-    req.body.imageAlternate = altImages;
+    req.body.imageAlternates = altImages;
   }
 
   // Banner Images

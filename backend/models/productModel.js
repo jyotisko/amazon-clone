@@ -25,7 +25,7 @@ const productSchema = new mongoose.Schema({
     type: String,
     required: [true, 'A product must have have the main image!']
   },
-  imageAlternate: {
+  imageAlternates: {
     type: [String],
   },
   imageBanners: {
@@ -69,6 +69,9 @@ const productSchema = new mongoose.Schema({
     type: Object,
     required: [true, 'A product must have some additional info!']
   },
+  productSummary: {
+    type: Object
+  },
   ratingsAverage: {
     type: Number,
     default: 0,
@@ -89,7 +92,23 @@ const productSchema = new mongoose.Schema({
   },
   categories: {
     type: [String],
-    enum: ['mobiles', 'electronics', 'books', 'toys']
+    enum: ['mobiles', 'electronics', 'books', 'toys', 'computer-accessories']
+  },
+  isChokingHazard: {
+    type: Boolean
+  },
+  chookingHazardText: {
+    type: String,
+    validate: {
+      validator: function () {
+        return this.isChokingHazard;
+      },
+      message: 'Product must be marked as a choking hazard before setting the choking hazard text!'
+    }
+  },
+  warrantyDetails: {
+    type: String,
+    default: "No warranty has been provided by the seller for this product."
   },
   createdAt: {
     type: Date,
