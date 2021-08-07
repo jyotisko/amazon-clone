@@ -1,0 +1,39 @@
+.carousel {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  position: relative;
+
+  &__button {
+    position: absolute;
+    &--right {  right: 0;}
+    &--left { left: 0; }
+    z-index: 10;
+    height: 200px;
+    font-size: 6rem;
+    background-color: transparent;
+    border: 2px solid transparent;
+    color: $color-blue-medium;
+    mix-blend-mode: luminosity;
+  } 
+
+  &__button.active {
+    border: 2px solid $color-white-light;
+  }
+}
+
+.slides {
+  height: 100%;
+  width: 100%;
+  position: relative;
+  display: flex;
+  overflow: hidden;
+  scroll-behavior: smooth;
+
+  .slide {
+    height: 100%;
+    width: 100%;
+    background-position: left right;
+    flex: 0 0 100%;
+  }
+}

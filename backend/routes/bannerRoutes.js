@@ -4,15 +4,13 @@ const bannerController = require('../controllers/bannerController');
 
 const router = express.Router();
 
-router.use(authController.protect, authController.restrictTo('admin'));
-
 router
   .route('/')
   .get(bannerController.getAllBanners)
-  .post(bannerController.uploadBannerPhoto, bannerController.resizeBannerPhoto, bannerController.createNewBanner);
+  .post(authController.protect, authController.restrictTo('admin'), bannerController.uploadBannerPhoto, bannerController.resizeBannerPhoto, bannerController.createNewBanner);
 
 router
   .route('/:id')
-  .delete(bannerController.deleteBanner);
+  .delete(authController.protect, authController.restrictTo('admin'), bannerController.deleteBanner);
 
 module.exports = router;

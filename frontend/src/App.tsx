@@ -1,9 +1,15 @@
 import React from 'react';
+import { Switch, Route } from 'react-router-dom';
+import Home from './pages/Home';
+import Nav from './components/Nav/Nav';
 
 const App = () => {
   return (
     <React.Fragment>
-      <img src='/img/users/default.jpg' />
+      <Nav />
+      <Switch>
+        <Route path='/' component={Home} />
+      </Switch>
     </React.Fragment>
   );
 }
