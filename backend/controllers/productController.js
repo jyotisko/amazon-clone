@@ -1,10 +1,11 @@
 const multer = require('multer');
-const { nanoid } = require('nanoid');
 const sharp = require('sharp');
+const { nanoid } = require('nanoid');
 const Product = require('../models/productModel');
 const catchAsync = require('../utils/catchAsync');
 const AppError = require('../utils/AppError');
 const { multerFilter, multerStorage } = require('../utils/multerConfig.js');
+const uploadImageToCloudinary = require('../utils/cloudinaryUploader');
 
 const upload = multer({
   storage: multerStorage,
@@ -21,31 +22,31 @@ exports.processImages = catchAsync(async (req, _, next) => {
   if (!req.files.imageMain) return next(new AppError('Please provide the main image!', 400));
   if (!req.files.imageAlternates && !req.files.imageBanners && !req.files.imageMain) return next();
 
+  const folder = '/amazon/products/';
+
   // Main Image
   if (req.files.imageMain) {
-    const imageMainFilename = `product-main-${nanoid(10)}.jpeg`;
-    await sharp(req.files.imageMain[0].buffer)
+    const imageMainBuffer = await sharp(req.files.imageMain[0].buffer)
       .toFormat('jpeg')
       .jpeg({ quality: 90 })
-      .toFile(`public/img/products/${imageMainFilename}`);
+      .toBuffer();
 
-    req.body.imageMain = imageMainFilename;
+    const imageMainName = await uploadImageToCloudinary(imageMainBuffer, folder, `main-${nanoid(10)}`);
+    req.body.imageMain = imageMainName;
   }
 
   // Alternate Images
   if (req.files.imageAlternates) {
     const altImages = [];
-
     await Promise.all(
       req.files.imageAlternates.map(async (file) => {
-        const filenameAlt = `product-alt-${nanoid(10)}.jpeg`;
-
-        await sharp(file.buffer)
+        const altBuffer = await sharp(file.buffer)
           .toFormat('jpeg')
           .jpeg({ quality: 90 })
-          .toFile(`public/img/products/${filenameAlt}`);
+          .toBuffer();
 
-        altImages.push(filenameAlt);
+        const altImageName = await uploadImageToCloudinary(altBuffer, folder, `alt-${nanoid(10)}`);
+        altImages.push(altImageName);
       })
     );
 
@@ -54,22 +55,20 @@ exports.processImages = catchAsync(async (req, _, next) => {
 
   // Banner Images
   if (req.files.imageBanners) {
-    const banners = [];
-
+    const bannerImages = [];
     await Promise.all(
       req.files.imageBanners.map(async (file) => {
-        const filenameBanner = `product-banner-${nanoid(10)}.jpeg`;
-
-        await sharp(file.buffer)
+        const bannerBuffer = await sharp(file.buffer)
           .toFormat('jpeg')
           .jpeg({ quality: 90 })
-          .toFile(`public/img/products/${filenameBanner}`);
+          .toBuffer();
 
-        banners.push(filenameBanner);
+        const bannerImageName = await uploadImageToCloudinary(bannerBuffer, folder, `banner-${nanoid(10)}`);
+        bannerImages.push(bannerImageName);
       })
     );
 
-    req.body.imageBanners = banners;
+    req.body.imageBanners = bannerImages;
   }
 
   next();

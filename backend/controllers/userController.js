@@ -1,8 +1,10 @@
+const cloudinary = require('cloudinary').v2;
 const multer = require('multer');
 const sharp = require('sharp');
 const User = require('../models/userModel');
 const catchAsync = require('../utils/catchAsync');
 const { multerFilter, multerStorage } = require('../utils/multerConfig.js');
+const uploadImageToCloudinary = require('../utils/cloudinaryUploader');
 
 // IMAGE CONFIGURATION START //
 const upload = multer({
@@ -12,17 +14,16 @@ const upload = multer({
 
 exports.uploadUserPhoto = upload.single('photo');
 
-exports.resizeUserPhoto = catchAsync(async (req, _res, next) => {
+exports.processUserPhoto = catchAsync(async (req, _res, next) => {
   if (!req.file) return next();
 
-  req.file.filename = `user-${req.user._id}-${Date.now()}.jpeg`;
-
-  await sharp(req.file.buffer)
+  const processedBuffer = await sharp(req.file.buffer)
     .resize(500, 500)
     .toFormat('jpeg')
     .jpeg({ quality: 90 })
-    .toFile(`public/img/users/${req.file.filename}`);
+    .toBuffer();
 
+  req.processedBuffer = processedBuffer;
   next();
 });
 // IMAGE CONFIGURATION END //
@@ -48,7 +49,11 @@ exports.updateMe = catchAsync(async (req, res, next) => {
   if (req.body.password || req.body.passwordConfirm) return next(new AppError('This route is not for password updates. Please use /updateMyPassword.', 400));
 
   const filteredBody = filterObj(req.body, 'name', 'email', 'streetAddress', 'country', 'phone');
-  if (req.file) filteredBody.photo = req.file.filename;
+
+  if (req.processedBuffer) {
+    const filename = await uploadImageToCloudinary(req.processedBuffer, '/amazon/users/', `user-${req.user._id}-${Date.now()}`);
+    filteredBody.photo = filename;
+  }
 
   const updatedUser = await User.findByIdAndUpdate(req.user._id, filteredBody, { new: true, runValidators: true });
 
