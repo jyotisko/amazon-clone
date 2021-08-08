@@ -7,10 +7,12 @@ const router = express.Router();
 router
   .route('/')
   .get(bannerController.getAllBanners)
-  .post(authController.protect, authController.restrictTo('admin'), bannerController.uploadBannerPhoto, bannerController.resizeBannerPhoto, bannerController.createNewBanner);
+  .post(authController.protect, authController.restrictTo('admin'), bannerController.uploadBannerPhoto, bannerController.processPhoto, bannerController.createNewBanner);
 
+router.use(authController.protect, authController.restrictTo('admin'));
 router
   .route('/:id')
-  .delete(authController.protect, authController.restrictTo('admin'), bannerController.deleteBanner);
+  .patch(bannerController.uploadBannerPhoto, bannerController.processPhoto, bannerController.updateBanner)
+  .delete(bannerController.deleteBanner);
 
 module.exports = router;

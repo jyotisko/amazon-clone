@@ -22,7 +22,6 @@ app.use(cors());
 app.use(cookieParser());
 if (process.env.NODE_ENV === 'development') app.use(morgan('dev'));
 app.use(expressMongoSanitize());
-app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.json());
 
 // ROUTES

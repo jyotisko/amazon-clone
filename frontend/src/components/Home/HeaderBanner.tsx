@@ -42,7 +42,7 @@ const HeaderBanner: React.FC = () => {
             banners.length > 0 && banners.map((banner: APIResponse, i: number) => {
               return (
                 <div key={banner._id} className={`slide slide--${i + 1}`} style={{
-                  backgroundImage: `url('/img/banners/${banner.image}')`,
+                  backgroundImage: `url(${banner.image})`,
                 }}>
                 </div>
               )
