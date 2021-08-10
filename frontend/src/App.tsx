@@ -2,6 +2,7 @@ import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 import Home from './pages/Home';
 import Nav from './components/Nav/Nav';
+import Footer from './components/Footer/Footer';
 
 const App = () => {
   return (
@@ -10,6 +11,7 @@ const App = () => {
       <Switch>
         <Route path='/' component={Home} />
       </Switch>
+      <Footer />
     </React.Fragment>
   );
 }
