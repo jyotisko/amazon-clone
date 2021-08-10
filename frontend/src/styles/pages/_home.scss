@@ -7,9 +7,16 @@
   width: 100%;
 }
 
-.featured {
+.featured__home {
   height: auto;
   width: 100%;
   transform: translateY(-35%);
+  padding: 0 2rem;
+}
+
+.main__home {
+  height: auto;
+  width: 100%;
+  margin-top: -25rem;
   padding: 0 2rem;
 }

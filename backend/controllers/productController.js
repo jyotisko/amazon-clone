@@ -113,7 +113,7 @@ exports.updateProduct = catchAsync(async (req, res, _next) => {
   if (data.technicalDetails) data.technicalDetails = JSON.parse(data.technicalDetails);
   if (data.additionalInfo) data.additionalInfo = JSON.parse(additionalInfo);
 
-  const product = await Product.findOneAndUpdate(req.params.id, data, { new: true });
+  const product = await Product.findByIdAndUpdate(req.params.id, data, { new: true });
 
   res.status(201).json({
     status: 'success',

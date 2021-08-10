@@ -9,7 +9,7 @@ import appliances from '../../assets/electronics.jpg';
 
 const Featured: React.FC = () => {
   return (
-    <section className="featured">
+    <section className="featured__home">
       <div className="features">
         <div className="feature feature--1">
           <h1 className="feature__text">AmazonBasics</h1>

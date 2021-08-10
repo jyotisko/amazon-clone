@@ -1,0 +1,136 @@
+$padding: 2rem;
+
+.product-row {
+  height: 320px;
+  width: 100%;
+  background-color: $color-white-light;
+  padding: 1rem $padding;
+  position: relative;
+  margin-bottom: 3rem;
+
+  &__btn {
+    position: absolute;
+    top: 0;
+    top: 50%;
+    font-size: 3rem;
+    cursor: pointer;
+    height: 100px;
+    width: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transform: translateY(-50%);
+    color: $color-black-dark;
+    background-color: $color-white-light;
+    border: none;
+    box-shadow: 1px -1px 54px 0px rgba(0,0,0,0.31);
+
+    &--left { left: $padding; }
+    &--right { right: $padding; }
+
+    &.disabled {
+      background-color: rgba($color-white-light, 0.3);
+      pointer-events: none;
+    }
+
+    &.active {
+      border: 2px solid $color-black-dark;
+    }
+  }
+
+  &__text {
+    height: 10%;
+    display: flex;
+    align-items: flex-end;
+    line-height: 35px;
+
+    h1 {
+      font-size: 2.1rem;
+      font-weight: 400;
+      margin-right: 4rem;
+    }
+
+    a {
+      font-size: 1.4rem;
+      color: $color-blue-light;
+      text-decoration: none;
+
+      &:hover {
+        color: $color-orange-medium;
+        text-decoration: underline 1px solid $color-orange-medium;
+      }
+    }
+  }
+
+  &__items {
+    height: 90%;
+    width: 100%;
+    display: flex;
+    overflow-x: scroll;
+    display: grid;
+    grid-template-columns: repeat(15, 350px);
+    grid-template-rows: 100%;
+    grid-column-gap: 2rem;
+    align-items: center;
+    scroll-behavior: smooth;
+
+    &::-webkit-scrollbar {
+      overflow: hidden;
+    }
+  }
+
+  &__product {
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+    display: grid;
+    grid-template-rows: 75% 15% 10%;
+    grid-template-columns: 100%;
+    padding: 0 3rem;
+
+    &__image {
+      height: 100%;
+      width: 100%;
+      object-fit: contain;
+      margin-bottom: 1rem;
+    }
+
+    &__name {
+      font-size: 1.6rem;
+      font-weight: 400;
+      color: $color-blue-light;
+
+      &:hover {
+        color: $color-orange-medium;
+        text-decoration: underline 1px solid $color-orange-medium;
+      }
+    }
+
+    &__price {
+      text-align: left;
+      margin-top: 1rem;
+
+      & > * { 
+        font-weight: 400;         
+        display: inline-block;
+      }
+
+      &__offer {
+        font-size: 1.6rem;
+        margin-right: 1rem;
+      }
+      
+      &__original {
+        text-decoration: line-through;
+        font-size: 1.2rem;
+        color: $color-black-medium;
+      }
+    }
+  }
+}
+
+.currency-sign {
+  font-size: 75%;
+  display: inline-block;
+  transform: translateY(-0.5rem);
+}
