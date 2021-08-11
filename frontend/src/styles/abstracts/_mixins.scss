@@ -1,0 +1,11 @@
+@mixin link ($font-size) {
+  font-size: $font-size;
+  color: $color-blue-light;
+  text-decoration: none;
+  display: inline-block;
+
+  &:hover {
+    text-decoration: underline solid 1px $color-orange-medium;
+    color: $color-orange-medium;
+  }
+}

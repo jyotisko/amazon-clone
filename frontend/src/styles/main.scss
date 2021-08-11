@@ -1,4 +1,5 @@
 @import './abstracts/variables';
+@import './abstracts/mixins';
 
 @import './base/reset';
 @import './base/typography';
@@ -6,8 +7,11 @@
 @import './components/carousel';
 @import './components/features';
 @import './components/row';
+@import './components/authForms';
 
 @import './layouts/nav';
 @import './layouts/footer';
+@import './layouts/authNav';
+@import './layouts/authFooter';
 
 @import './pages/home';

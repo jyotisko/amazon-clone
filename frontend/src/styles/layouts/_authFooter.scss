@@ -1,0 +1,28 @@
+.footer--auth {
+  width: 100%;
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+  &__links {
+    height: 100%;
+    width: 300px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__link { @include link(1.2rem); }
+
+  &__copyright {
+    text-align: center;
+    h5 {
+      font-size: 1.2rem;
+      font-weight: 300;
+      color: $color-gray-light;
+      letter-spacing: 0.3px;
+    }
+  }
+}

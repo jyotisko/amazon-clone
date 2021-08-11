@@ -21,16 +21,8 @@
   }
 
   &__link {
-    font-size: 1.3rem;
-    color: $color-blue-light;
-    text-decoration: none;
-    display: inline-flex;
-    width: 20%;
-
-    &:hover {
-      text-decoration: underline solid 1px $color-orange-medium;
-      color: $color-orange-medium;
-    }
+    @include link(1.3rem);
+    width: 25%;
   }
 
   &__image {

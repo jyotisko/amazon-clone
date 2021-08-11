@@ -96,14 +96,7 @@ $padding: 2rem;
     }
 
     &__name {
-      font-size: 1.6rem;
-      font-weight: 400;
-      color: $color-blue-light;
-
-      &:hover {
-        color: $color-orange-medium;
-        text-decoration: underline 1px solid $color-orange-medium;
-      }
+      @include link(1.6rem);
     }
 
     &__price {

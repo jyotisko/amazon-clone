@@ -1,19 +1,17 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 import Home from './pages/Home';
-import Nav from './components/Nav/Nav';
-import Footer from './components/Footer/Footer';
+import Login from './pages/Login';
 
-const App = () => {
+const App: React.FC = () => {
   return (
     <React.Fragment>
-      <Nav />
       <Switch>
-        <Route path='/' component={Home} />
+        <Route path='/' exact component={Home} />
+        <Route path='/login' component={Login} />
       </Switch>
-      <Footer />
     </React.Fragment>
   );
-}
+};
 
 export default App;
