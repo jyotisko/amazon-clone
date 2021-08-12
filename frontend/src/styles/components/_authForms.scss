@@ -12,12 +12,13 @@
 .form--login {
   height: 27rem;
   width: 35rem;
-  border: 1px solid rgba($color-black-medium, 0.1);
-  padding: 2rem;
-  border-radius: 0.5rem;
 }
 
 .form {
+  border: 1px solid rgba($color-black-medium, 0.1);
+  padding: 2rem;
+  border-radius: 0.5rem;
+
   &__title {
     font-size: 2.8rem;
     font-weight: 500;
@@ -45,12 +46,12 @@
     border-radius: 0.3rem;
     outline: none;
     
-    &:focus {
-      box-shadow: 0 0 5px 0.1rem $color-yellow-medium;
-    }
+    &:focus { box-shadow: 0 0 5px 0.1rem $color-yellow-medium; }
   }
 
   &__submit {
+    position: relative;
+    height: 40px;
     width: 100%;
     font-size: 1.6rem;
     cursor: pointer;
@@ -60,6 +61,7 @@
     border-radius: 0.3rem;
 
     &:hover { background-color: rgba($color-yellow-dull, 0.9); }
+    &:disabled { background-color: rgba($color-yellow-dull, 0.6) }
   }
 }
 
@@ -72,6 +74,8 @@
   justify-content: center;
   align-items: center;
   transform: translateY(50%);
+
+  a { text-decoration: none; }
   
   &__text {
     font-size: 1.4rem;
@@ -112,5 +116,16 @@
     outline: none;
 
     &:hover { background-color: rgba($color-gray-light, 0.08); }
+  }
+}
+
+.section--signup {
+  .form--signup {
+    height: 38rem;
+    width: 38rem;
+  }
+
+  .new-to-amazon {
+    margin-top: 10rem;
   }
 }

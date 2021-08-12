@@ -1,12 +1,16 @@
 import React, { useRef, useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import axios from 'axios';
 import { EMAIL_REGEX, PASSWORD_REGEX } from '../../utils';
+import Spinner from '../Utils/Spinner';
 
 const LoginForm: React.FC = () => {
+  const history = useHistory();
   const emailRef = useRef<HTMLInputElement>(null);
   const passwordRef = useRef<HTMLInputElement>(null);
   const [isEmailValid, setIsEmailValid] = useState<boolean>(true);
-  const [isPasswordValid, setIsPasswordValid] = useState<boolean>(true)
+  const [isPasswordValid, setIsPasswordValid] = useState<boolean>(true);
+  const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState(null);
 
   const handleLoginSubmit = async (e: React.SyntheticEvent) => {
@@ -17,16 +21,21 @@ const LoginForm: React.FC = () => {
     if (!EMAIL_REGEX.test(emailRef.current!.value.toLowerCase())) return setIsEmailValid(false);
     if (!PASSWORD_REGEX.test(passwordRef.current!.value)) return setIsPasswordValid(false);
 
+    setLoading(true);
     try {
       const { data } = await axios.post('/api/v1/users/login', {
         email: emailRef.current!.value,
         password: passwordRef.current!.value
       });
 
-      console.log(data);
+      if (data.status === 'success') return history.push('/');
+
     } catch (err) {
-      console.log(err)
+      console.log(err);
+      setError(err.message);
     }
+
+    setLoading(false);
   };
 
   return (
@@ -41,9 +50,10 @@ const LoginForm: React.FC = () => {
         <div className="form__group">
           <label htmlFor="password" className="form__label">Password</label>
           <input ref={passwordRef} id="password" type="password" className="form__input" required />
-          {isPasswordValid || <h5 className="form__invalid">Must contain lowercase, uppercase, number and a special character</h5>}
+          {isPasswordValid || <h5 className="form__invalid">Minimum eight characters, at least one uppercase letter, one lowercase letter and one number</h5>}
         </div>
-        <button className="form__submit">Continue</button>
+        {loading && <button className="form__submit" disabled><Spinner size={30} styles={{ margin: '-15px' }} /></button>}
+        {loading || <button className="form__submit">Continue</button>}
       </form>
       <div className="new-to-amazon">
         <h4 className="new-to-amazon__text">New to amazon?</h4>

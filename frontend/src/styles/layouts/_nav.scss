@@ -1,5 +1,6 @@
 .nav {
   color: $color-white-light;
+
   &__up {
     height: 70px;
     background-color: $color-blue-dark;
@@ -108,8 +109,60 @@
       font-size: 1.4rem;
     }
   }
+  
+  &__dropdown-container { position: relative; }
+  
+  &__dropdown {
+    position: absolute;
+    bottom: -200px;
+    background-color: $color-white-light;
+    width: 300px;
+    height: 200px;
+    z-index: 100;
+    padding: 5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    cursor: default !important;
+    opacity: 1;
+    pointer-events: all;
+    transition: 0.4s ease;
 
-  &__dropdown, 
+    &.hidden { 
+      opacity: 0;
+      pointer-events: none
+    }
+    
+    &__link { @include link(1.2rem); }
+
+    &__button {
+      display: block;
+      margin-bottom: 2rem;
+      font-size: 1.8rem;
+      font-size: 1.6rem;
+      cursor: pointer;
+      padding: 0.7rem;
+      background-color: $color-yellow-dull;
+      border: 1px solid rgba($color-black-dark, 0.1);
+      border-radius: 0.3rem;
+      text-decoration: none;
+      color: $color-black-dark;
+      width: 100%;
+      text-align: center;
+
+      &:hover { background-color: rgba($color-yellow-dull, 0.9); }
+    }
+
+    &__already-customer {
+      text-align: center;
+      color: rgba($color-black-medium, 0.6);
+      font-size: 1.2rem;
+      letter-spacing: 0.6px;
+    }
+  }
+
+  &__dropdown-container, 
   &__return-orders, 
   &__cart {
     height: 100%;

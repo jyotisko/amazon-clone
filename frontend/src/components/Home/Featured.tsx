@@ -1,3 +1,4 @@
+import { RootStateOrAny, useSelector } from 'react-redux';
 import amazonBasics from '../../assets/amazon-basics.jpg';
 import idealTV from '../../assets/ideal-tv.jpg';
 import gaming from '../../assets/gaming.png';
@@ -8,6 +9,8 @@ import amazonPrime from '../../assets/prime.jpg';
 import appliances from '../../assets/electronics.jpg';
 
 const Featured: React.FC = () => {
+  const auth = useSelector((state: RootStateOrAny) => state.auth);
+
   return (
     <section className="featured__home">
       <div className="features">
@@ -28,8 +31,10 @@ const Featured: React.FC = () => {
         </div>
         <div className="feature feature--4 feature--prime">
           <div className="feature__signin">
-            <h1 className="feature__text feature__signin__text">Sign in for the best experience</h1>
-            <a className="feature__signin__link" href="#">Sign in securely</a>
+            <h1 className="feature__text feature__signin__text">
+              {!auth.isLoggedIn ? 'Sign in for the best experience' : `Hello, ${auth.user.name.split(' ')[0]}`}
+            </h1>
+            {auth.isLoggedIn || <a className="feature__signin__link" href="#">Sign in securely</a>}
           </div>
           <div className="feature__prime">
             <img src={amazonPrime} alt="Amazon Prime" className="feature__prime__image" />

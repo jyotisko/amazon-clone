@@ -2,6 +2,7 @@ import axios from 'axios';
 import { useState, useEffect, useRef } from 'react';
 import { BsChevronLeft, BsChevronRight } from 'react-icons/bs';
 import { ProductResponseType } from '../../types/APIResponseTypes';
+import Spinner from '../Utils/Spinner';
 import Product from './Product';
 
 interface ProductRowProps {
@@ -51,7 +52,7 @@ const ProductRow: React.FC<ProductRowProps> = (props) => {
         <a href={props.linkTo}>Learn more</a>
       </div>
       {
-        products.length > 0 && (
+        products.length > 0 ? (
           <>
             <button className="product-row__btn product-row__btn--left" ref={leftButtonRef} onClick={() => slide('left')}><BsChevronLeft /></button>
             <button className="product-row__btn product-row__btn--right" ref={rightButtonRef} onClick={() => slide('right')}><BsChevronRight /></button>
@@ -59,6 +60,8 @@ const ProductRow: React.FC<ProductRowProps> = (props) => {
               {products.map(product => <Product key={product._id} product={product} />)}
             </div>
           </>
+        ) : (
+          <Spinner />
         )
       }
     </section>

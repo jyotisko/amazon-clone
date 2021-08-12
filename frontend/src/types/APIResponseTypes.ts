@@ -14,3 +14,9 @@ export interface BannerResponseType {
   link: string;
   _id: string;
 };
+
+export interface UserResponseType {
+  name: string;
+  phone: number;
+  email: string;
+};

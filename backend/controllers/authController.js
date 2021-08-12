@@ -52,7 +52,7 @@ exports.login = catchAsync(async (req, res, next) => {
 
   req.user = user;
   res.status(200).json({
-    status: 'success ',
+    status: 'success',
     token: token
   });
 });
@@ -89,4 +89,44 @@ exports.restrictTo = (...roles) => {
     }
     next();
   };
+};
+
+const notLoggedInResponse = (res) => {
+  res.status(200).json({
+    status: 'success',
+    data: null
+  });
+};
+
+exports.isLoggedIn = async (req, res, next) => {
+  try {
+    let token;
+    if (req.headers.authorization && req.headers.authorization.startsWith('Bearer')) {
+      token = req.headers.authorization.split(' ')[1];
+    } else if (req.cookies?.jwt) {
+      token = req.cookies.jwt;
+    }
+
+    if (!token) return notLoggedInResponse(res);
+
+    const decoded = await promisify(jwt.verify)(token, process.env.JWT_SECRET);
+
+    const currentUser = await User.findById(decoded.id);
+    if (!currentUser) return notLoggedInResponse(res);
+
+    if (currentUser.changedPasswordAfter(decoded.iat)) return notLoggedInResponse(res);
+
+    req.user = currentUser;
+
+    if (currentUser) {
+      res.status(200).json({
+        status: 'success',
+        data: {
+          user: currentUser
+        }
+      });
+    }
+  } catch (err) {
+    notLoggedInResponse(res);
+  }
 };

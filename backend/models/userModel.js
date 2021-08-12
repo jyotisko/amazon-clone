@@ -9,7 +9,7 @@ const userSchema = new mongoose.Schema({
   },
   phone: {
     type: Number,
-    required: [true, 'A user must have a phone!'],
+    // required: [true, 'A user must have a phone!'],
     validate: {
       validator: function (value) {
         return String(value).length === 10;
