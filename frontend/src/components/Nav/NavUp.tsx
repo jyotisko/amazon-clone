@@ -31,7 +31,7 @@ const NavUp = () => {
           <h5>Hello, {!auth.isLoggedIn ? 'Sign in' : auth.user.name.split(' ')[0]}</h5>
           <h4>Account & Lists</h4>
         </div>
-        <DropdownMenu />
+        <DropdownMenu authState={auth} />
       </div>
       <div className="nav__return-orders">
         <div className="nav__texts">

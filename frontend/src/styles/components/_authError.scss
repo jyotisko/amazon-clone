@@ -1,0 +1,31 @@
+.section--auth-error {
+  height: 50px;
+  width: 100%;
+  display: grid;
+  place-items: center;
+  background-color: $color-white-light;
+
+  .error {
+    width: 35rem;
+    padding: 3rem;
+    display: flex;
+    border: 1px solid $color-red-medium;
+    
+    &__icon {
+      color: $color-red-medium;
+      font-size: 3rem;
+      margin-right: 1rem;
+    }
+    
+    &__title {
+      font-weight: 400;
+      font-size: 2rem;
+      color: $color-red-medium;
+    }
+
+    &__message {
+      font-size: 1.2rem;
+      font-weight: 400;
+    }
+  }
+}

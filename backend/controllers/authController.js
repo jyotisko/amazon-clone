@@ -34,7 +34,7 @@ exports.signup = catchAsync(async (req, res, _next) => {
 
   req.user = user;
   res.status(201).json({
-    status: 'success ',
+    status: 'success',
     token: token
   });
 });
@@ -57,7 +57,16 @@ exports.login = catchAsync(async (req, res, next) => {
   });
 });
 
-exports.protect = catchAsync(async (req, res, next) => {
+exports.logout = catchAsync(async (_req, res, _next) => {
+  res.cookie('jwt', 'loggedout', {
+    expires: new Date(Date.now() + 10 * 1000),
+    httpOnly: true
+  });
+
+  res.status(200).json({ status: 'success' });
+});
+
+exports.protect = catchAsync(async (req, _res, next) => {
   let token;
   if (req.headers.authorization && req.headers.authorization.startsWith('Bearer')) {
     token = req.headers.authorization.split(' ')[1];
@@ -98,7 +107,7 @@ const notLoggedInResponse = (res) => {
   });
 };
 
-exports.isLoggedIn = async (req, res, next) => {
+exports.isLoggedIn = async (req, res) => {
   try {
     let token;
     if (req.headers.authorization && req.headers.authorization.startsWith('Bearer')) {
