@@ -96,6 +96,8 @@ $padding: 2rem;
     grid-template-columns: 100%;
     padding: 0 3rem;
 
+    a { text-decoration: none; }
+
     &__image {
       height: 100%;
       width: 100%;

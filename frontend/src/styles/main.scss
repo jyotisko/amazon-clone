@@ -10,6 +10,11 @@
 @import './components/authForms';
 @import './components/spinner';
 @import './components/authError';
+@import './components/productImages';
+@import './components/nameAndSummary';
+@import './components/cartWishlistBuy';
+@import './components/icons';
+@import './components/buttons';
 
 @import './layouts/nav';
 @import './layouts/footer';
@@ -17,3 +22,4 @@
 @import './layouts/authFooter';
 
 @import './pages/home';
+@import './pages/productDetail';

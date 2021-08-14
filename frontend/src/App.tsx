@@ -1,11 +1,15 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, lazy, Suspense } from 'react';
 import { Switch, Route } from 'react-router-dom';
 import axios from 'axios';
 import { useDispatch } from 'react-redux';
 import { authActions } from './store/authSlice';
-import Home from './pages/Home';
-import Login from './pages/Login';
-import Signup from './pages/Signup';
+import Spinner from './components/Utils/Spinner';
+
+// Lazy loaded components
+const Home = lazy(() => import('./pages/Home'));
+const Login = lazy(() => import('./pages/Login'));
+const Signup = lazy(() => import('./pages/Signup'));
+const ProductDetail = lazy(() => import('./pages/ProductDetail'));
 
 const App: React.FC = () => {
   const dispatch = useDispatch();
@@ -20,9 +24,12 @@ const App: React.FC = () => {
   return (
     <React.Fragment>
       <Switch>
-        <Route path='/' exact component={Home} />
-        <Route path='/login' component={Login} />
-        <Route path='/signup' component={Signup} />
+        <Suspense fallback={<Spinner />}>
+          <Route path='/' exact component={Home} />
+          <Route path='/login' component={Login} />
+          <Route path='/signup' component={Signup} />
+          <Route path='/product/:id' component={ProductDetail} />
+        </Suspense>
       </Switch>
     </React.Fragment>
   );

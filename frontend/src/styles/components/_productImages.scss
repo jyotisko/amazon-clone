@@ -1,0 +1,30 @@
+.product-images {
+  position: relative;
+  width: 100%;
+  height: 700px;
+
+  &__alt {
+    position: absolute;
+    left: -10%;
+    display: flex;
+    flex-direction: column;
+
+    img {
+      height: 40px;
+      width: 40px;
+      border: 1px solid rgba($color-black-dark, 0.2);
+      
+      &:not(:last-child) { margin-bottom: 1rem; }
+    }
+  }
+
+  &__main {
+    height: 100%;
+    width: 100%;
+
+    img {
+      height: 100%;
+      width: 100%;
+    }
+  }
+}

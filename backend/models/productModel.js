@@ -89,6 +89,7 @@ const productSchema = new mongoose.Schema({
   },
   keywords: {
     type: String,
+    required: [true, 'Keywords enable better search']
   },
   categories: {
     type: [String],

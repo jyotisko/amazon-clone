@@ -1,0 +1,75 @@
+.product__cart-wishlist-buy {
+  height: 100%;
+  width: 100%;
+  border: 1px solid $color-blue-light;
+  padding: 2rem;
+  border-radius: 1rem;
+
+  &__price {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 2rem;
+
+    &__text { font-size: 1.4rem; }
+
+    &__value {
+      font-weight: 400;
+      font-size: 1.5rem;
+      color: $color-red-medium;
+    }
+  }
+
+  &__delivery {
+    font-size: 1.4rem;
+    font-weight: 400;
+    margin-bottom: 4rem;
+
+    &__date { font-weight: 600; }
+  }
+
+  &__stock {
+    font-size: 2rem;
+    font-weight: 400;
+    color: $color-green-medium;
+    margin-bottom: 3rem;
+
+    &.out-of-stock { color: $color-red-medium; }
+  }
+
+  &__options {
+    margin-bottom: 3rem;
+
+    select {
+      margin-bottom: 1rem;
+      font-size: 1.6rem;
+    }
+
+    .btn--add-to-cart { margin-bottom: 1rem; }
+  }
+
+  &__transaction {
+
+    &__secure {
+      display: block;
+      margin-bottom: 1rem;
+      @include link(1.4rem);
+    }
+
+    &__detail { 
+      width: 100%;
+      font-weight: 400;
+      font-size: 1.2rem;
+      display: flex;
+
+      &__key {
+        width: 40%;
+        color: $color-gray-light;
+      }
+
+      &__value {
+        width: 60%;
+      }
+    }
+  }
+}

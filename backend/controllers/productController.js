@@ -19,13 +19,13 @@ exports.uploadProductImages = upload.fields([
 ]);
 
 exports.processImages = catchAsync(async (req, _, next) => {
-  if (!req.files.imageMain) return next(new AppError('Please provide the main image!', 400));
-  if (!req.files.imageAlternates && !req.files.imageBanners && !req.files.imageMain) return next();
+  if (req.files && !req?.files?.imageMain) return next(new AppError('Please provide the main image!', 400));
+  if (!req?.files?.imageAlternates && !req?.files?.imageBanners && !req?.files?.imageMain) return next();
 
   const folder = '/amazon/products/';
 
   // Main Image
-  if (req.files.imageMain) {
+  if (req?.files?.imageMain) {
     const imageMainBuffer = await sharp(req.files.imageMain[0].buffer)
       .toFormat('jpeg')
       .jpeg({ quality: 90 })
@@ -36,7 +36,7 @@ exports.processImages = catchAsync(async (req, _, next) => {
   }
 
   // Alternate Images
-  if (req.files.imageAlternates) {
+  if (req?.files?.imageAlternates) {
     const altImages = [];
     await Promise.all(
       req.files.imageAlternates.map(async (file) => {
@@ -54,7 +54,7 @@ exports.processImages = catchAsync(async (req, _, next) => {
   }
 
   // Banner Images
-  if (req.files.imageBanners) {
+  if (req?.files?.imageBanners) {
     const bannerImages = [];
     await Promise.all(
       req.files.imageBanners.map(async (file) => {
@@ -87,6 +87,17 @@ exports.getAllProducts = catchAsync(async (req, res, _next) => {
     results: products.length,
     data: {
       products: products
+    }
+  });
+});
+
+exports.getProduct = catchAsync(async (req, res, _next) => {
+  const product = await Product.findById(req.params.id);
+
+  res.status(200).json({
+    status: 'success',
+    data: {
+      product: product
     }
   });
 });

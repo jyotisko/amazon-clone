@@ -1,0 +1,109 @@
+.product-column-middle {
+  height: 100%;
+  width: 100%;
+
+  &__row-1,
+  &__row-2 {
+    margin-bottom: 1rem;
+
+    &::after {
+      content: '';
+      display: block;
+      height: 1px;
+      width: 100%;
+      background-color: rgba($color-gray-light, 0.3);
+    }
+  }
+
+  &__name {
+    font-size: 2.4rem;
+    font-weight: 400;
+  }
+
+  &__manufacturer-store { 
+    @include link(1.4rem); 
+    margin-bottom: 0.6rem;
+  }
+
+  &__ratings {
+    display: flex;
+    align-items: center;
+
+    .icon:nth-child(5) { margin-right: 1rem; }
+  }
+
+  &__ratings-quantity {
+    display: block;
+    @include link(1.4rem);
+    transform: translateY(-2px);
+  }
+
+  &__price {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    margin-bottom: 2rem;
+
+    &-offer { 
+      display: flex; 
+      
+      &__text {
+        font-weight: 400;
+        font-size: 1.4rem;
+        margin-right: 0.6rem;
+      }
+
+      &__value {
+        font-size: 1.6rem;
+        font-weight: 500;
+        color: $color-red-medium;
+        margin-right: 0.8rem;
+      }
+    }
+
+    &-original {
+      display: flex;
+      align-items: center;
+
+      &__value {
+        text-decoration: line-through;
+        color: $color-gray-light;
+        font-size: 1.6rem;
+        font-weight: 400;
+        margin-right: 0.6rem;
+      }
+
+      &__percentage {
+        font-weight: 400;
+        font-size: 1.2rem;
+        color: $color-black-medium
+      }
+    }
+  }
+
+  &__summary__row {
+    display: flex;
+    width: 100%;
+    font-size: 1.2rem;
+    margin-bottom: 0.4rem;
+    &:last-child { margin-bottom: 2rem; }
+  }
+
+  &__summary__key {
+    width: 50%;
+    margin-right: 1rem;
+    font-weight: 600;
+    letter-spacing: 0.4px;
+  }
+
+  &__summary__value {
+    width: 50%;
+    font-weight: 400;
+  }
+
+  &__about-list {
+    display: block;
+    margin-left: 1rem;
+    font-size: 1.4rem;
+  }
+}
