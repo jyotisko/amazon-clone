@@ -126,7 +126,7 @@ productSchema.virtual('savingsPrice').get(function () {
 
 productSchema.virtual('savingsPercentage').get(function () {
   const savings = this.priceOriginal - this.priceOffer;
-  const percentage = (savings / this.priceOriginal) * 100;
+  const percentage = ((savings / this.priceOriginal) * 100).toFixed(2);
   return percentage;
 });
 

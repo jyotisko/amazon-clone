@@ -19,7 +19,7 @@ const App: React.FC = () => {
       const { data } = await axios.get('/api/v1/users/isLoggedIn', { withCredentials: true });
       if (data.data?.user) dispatch(authActions.login({ user: data.data.user }));
     })();
-  }, [dispatch]);
+  }, []);
 
   return (
     <React.Fragment>

@@ -5,14 +5,7 @@
   &__row-1,
   &__row-2 {
     margin-bottom: 1rem;
-
-    &::after {
-      content: '';
-      display: block;
-      height: 1px;
-      width: 100%;
-      background-color: rgba($color-gray-light, 0.3);
-    }
+    @include grayUnderline();
   }
 
   &__name {

@@ -44,6 +44,7 @@ const CartWishlistBuy: React.SFC<CartWishlistBuyProps> = ({ product }) => {
           <span className="product__cart-wishlist-buy__transaction__detail__value">Amazon.com</span>
         </h5>
       </div>
+      <button className="btn btn--wishlist">Add to list</button>
     </section>
   );
 };

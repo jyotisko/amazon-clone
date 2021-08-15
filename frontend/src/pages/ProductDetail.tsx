@@ -2,11 +2,12 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import { ProductResponseType } from '../types/APIResponseTypes';
-import Images from '../components/ProductDetail/Images';
-import NameAndSummary from '../components/ProductDetail/NameAndSummary';
-import CartWishlistBuy from '../components/ProductDetail/CartWishlistBuy';
-import Spinner from '../components/Utils/Spinner';
 import Nav from '../components/Nav/Nav';
+import Spinner from '../components/Utils/Spinner';
+import Overview from '../components/ProductDetail/Overview';
+import Banners from '../components/ProductDetail/Banners';
+import Description from '../components/ProductDetail/Description';
+import Information from '../components/ProductDetail/Information';
 
 const ProductDetail: React.FC = () => {
   const { id } = useParams();
@@ -27,13 +28,12 @@ const ProductDetail: React.FC = () => {
       <main className="main main--product">
         {
           product ? (
-
-            <section className='section section--product-overview'>
-              <Images product={product} />
-              <NameAndSummary product={product} />
-              <CartWishlistBuy product={product} />
-            </section>
-
+            <>
+              <Overview product={product} />
+              <Banners banners={product.imageBanners} />
+              <Description description={product.description} />
+              <Information product={product} />
+            </>
           ) : (
             <Spinner size={80} />
           )

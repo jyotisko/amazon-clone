@@ -4,6 +4,7 @@
   border: 1px solid $color-blue-light;
   padding: 2rem;
   border-radius: 1rem;
+  position: relative;
 
   &__price {
     width: 100%;
@@ -49,6 +50,7 @@
   }
 
   &__transaction {
+    margin-bottom: 4rem;
 
     &__secure {
       display: block;

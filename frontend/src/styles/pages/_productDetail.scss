@@ -15,4 +15,42 @@
   grid-template-columns: 50% 30% 20%;
   grid-template-rows: 100%;
   grid-column-gap: 3rem;
+  margin-bottom: 12rem;
+  margin-top: 6rem;
 } 
+
+.section--banners {
+  &__manufacturer { @include darkYellowText(1.6rem); }
+
+  &::before {
+    content: '';
+    display: block;
+    width: 100%;
+    height: 2px;
+    background-color: rgba($color-gray-light, 0.2);
+    margin-bottom: 2rem
+  }
+  
+  @include grayUnderline();
+
+  &::after { margin-top: 4rem; }
+}
+
+.section--description {
+  padding: 2rem 0;
+
+  &__title { @include darkYellowText(1.6rem); }
+
+  &__description { font-size: 1.2rem; }
+
+  @include grayUnderline();
+
+  &::after { margin-top: 2rem; }
+}
+
+.section--info {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 50% 50%;
+  grid-column-gap: 3rem;
+}

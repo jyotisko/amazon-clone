@@ -2,7 +2,8 @@
   cursor: pointer;
 
   &--add-to-cart,
-  &--buy {
+  &--buy,
+  &--wishlist {
     border: none;
     outline: none;
     width: 100%;
@@ -19,5 +20,10 @@
   &--buy { 
     background-color: $color-yellow-medium; 
     &:hover { background-color: rgba($color-yellow-medium, 0.9); }
+  }
+
+  &--wishlist {
+    background-color: rgba($color-gray-light, 0.2);
+    &:hover { background-color: rgba($color-gray-light, 0.25); }
   }
 }

@@ -1,0 +1,32 @@
+.product-info {
+  height: 100%;
+  width: 100%;
+
+  &__title {
+    @include darkYellowText(1.6rem);
+  }
+
+  &__row {
+    width: 100%;
+    display: flex;
+    border-top: 1px solid rgba($color-gray-light, 0.3);
+    font-size: 1.4rem;
+
+    & > * {
+      padding: 1rem;
+    }
+  }
+
+  &__key { 
+    width: 50%; 
+    background-color: $color-white-dark;
+  }
+
+  &__value { 
+    width: 50%; 
+  }
+
+  &__warranty { margin-top: 2rem; }
+
+  &__warranty-text { font-size: 1.4rem; }
+}
