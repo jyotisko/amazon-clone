@@ -1,7 +1,7 @@
 import { RootStateOrAny, useSelector } from 'react-redux';
 import { BsFillLockFill } from 'react-icons/bs';
 import { ProductResponseType } from '../../types/APIResponseTypes';
-import { MONTHS } from '../../utils';
+import { getDeliveryDate } from '../../utils';
 
 export interface CartWishlistBuyProps {
   product: ProductResponseType;
@@ -9,14 +9,6 @@ export interface CartWishlistBuyProps {
 
 const CartWishlistBuy: React.SFC<CartWishlistBuyProps> = ({ product }) => {
   const currency = useSelector((state: RootStateOrAny) => state.currency);
-
-  const getDeliveryDate = (days: number): string => {
-    const deliveryTimestamp = new Date(Date.now() + (days * 24 * 60 * 60 * 1000));
-    const day = deliveryTimestamp.getDate();
-    const weekDay = new Intl.DateTimeFormat('en-US', { weekday: 'long' }).format(deliveryTimestamp);
-    const month = MONTHS[deliveryTimestamp.getMonth()];
-    return `${weekDay}, ${month} ${day}`;
-  };
 
   return (
     <section className="product__cart-wishlist-buy">

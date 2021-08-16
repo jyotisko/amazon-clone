@@ -1,10 +1,10 @@
 import NavUp from './NavUp';
 import NavDown from './NavDown';
 
-const Nav = () => {
+const Nav = ({ showSearchHistory = false }) => {
   return (
     <nav className="nav">
-      <NavUp />
+      <NavUp showSearchHistory={showSearchHistory} />
       <NavDown />
     </nav>
   );

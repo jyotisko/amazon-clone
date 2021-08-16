@@ -6,7 +6,7 @@ import UserCountry from './UserCountry'
 import NavSearch from './NavSearch';
 import DropdownMenu from './DropdownMenu';
 
-const NavUp = () => {
+const NavUp = ({ showSearchHistory = false }) => {
   const dropdownRef = useRef<HTMLDivElement>(null);
   const auth = useSelector((state: RootStateOrAny) => state.auth);
 
@@ -25,7 +25,7 @@ const NavUp = () => {
     <div className="nav__up">
       <img src={logo} alt="Amazon Logo" className="nav__logo" />
       <UserCountry />
-      <NavSearch />
+      <NavSearch showSearchHistory={showSearchHistory} />
       <div className="nav__dropdown-container" ref={dropdownRef} onMouseEnter={() => changeDropdownState('show')} onMouseLeave={() => changeDropdownState('hide')}>
         <div className="nav__texts">
           <h5>Hello, {!auth.isLoggedIn ? 'Sign in' : auth.user.name.split(' ')[0]}</h5>

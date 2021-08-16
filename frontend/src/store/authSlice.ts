@@ -1,12 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { UserResponseType } from '../types/APIResponseTypes';
+import { authStateType } from '../types/stateTypes';
 
-interface InitialStateType {
-  user: null | UserResponseType,
-  isLoggedIn: boolean
-}
-
-const initialState: InitialStateType = {
+const initialState: authStateType = {
   user: null,
   isLoggedIn: false
 };

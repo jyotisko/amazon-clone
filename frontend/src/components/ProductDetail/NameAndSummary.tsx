@@ -1,13 +1,14 @@
 import { AiOutlineStar, AiFillStar } from 'react-icons/ai';
 import { RootStateOrAny, useSelector } from 'react-redux';
 import { ProductResponseType } from '../../types/APIResponseTypes';
+import { currencyStateType } from '../../types/stateTypes';
 
 export interface NameAndSummaryProps {
   product: ProductResponseType
 };
 
 const NameAndSummary: React.FC<NameAndSummaryProps> = ({ product }) => {
-  const currency = useSelector((state: RootStateOrAny) => state.currency);
+  const currency: currencyStateType = useSelector((state: RootStateOrAny) => state.currency);
 
   return (
     <section className="product-column-middle">

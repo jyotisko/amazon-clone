@@ -1,4 +1,5 @@
 import { RootStateOrAny, useSelector } from 'react-redux';
+import { authStateType } from '../../types/stateTypes';
 import amazonBasics from '../../assets/amazon-basics.jpg';
 import idealTV from '../../assets/ideal-tv.jpg';
 import gaming from '../../assets/gaming.png';
@@ -9,7 +10,7 @@ import amazonPrime from '../../assets/prime.jpg';
 import appliances from '../../assets/electronics.jpg';
 
 const Featured: React.FC = () => {
-  const auth = useSelector((state: RootStateOrAny) => state.auth);
+  const auth: authStateType = useSelector((state: RootStateOrAny) => state.auth);
 
   return (
     <section className="featured__home">
@@ -32,7 +33,7 @@ const Featured: React.FC = () => {
         <div className="feature feature--4 feature--prime">
           <div className="feature__signin">
             <h1 className="feature__text feature__signin__text">
-              {!auth.isLoggedIn ? 'Sign in for the best experience' : `Hello, ${auth.user.name.split(' ')[0]}`}
+              {!auth.isLoggedIn ? 'Sign in for the best experience' : `Hello, ${auth.user!.name.split(' ')[0]}`}
             </h1>
             {auth.isLoggedIn || <a className="feature__signin__link" href="#">Sign in securely</a>}
           </div>

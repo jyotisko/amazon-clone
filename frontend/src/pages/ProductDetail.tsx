@@ -8,6 +8,7 @@ import Overview from '../components/ProductDetail/Overview';
 import Banners from '../components/ProductDetail/Banners';
 import Description from '../components/ProductDetail/Description';
 import Information from '../components/ProductDetail/Information';
+import Footer from '../components/Footer/Footer';
 
 const ProductDetail: React.FC = () => {
   const { id } = useParams();
@@ -39,6 +40,7 @@ const ProductDetail: React.FC = () => {
           )
         }
       </main>
+      <Footer />
     </React.Fragment>
   );
 };
