@@ -11,16 +11,14 @@ const Pagination: React.FC = () => {
   const search: searchStateType = useSelector((state: RootStateOrAny) => state.search);
 
   const goToNextPage = () => {
+    history.push(`/search?query=${search.query}&page=${search.page + 1}&category=${search.category}`);
     dispatch(searchActions.incrementPage());
   };
 
   const goToPrevPage = () => {
+    history.push(`/search?query=${search.query}&page=${search.page - 1}&category=${search.category}`);
     dispatch(searchActions.decrementPage());
   };
-
-  useEffect(() => {
-    history.push(`/search?query=${search.query}&page=${search.page}&category=${search.category}`);
-  }, [search.page]);
 
   return (
     <section className="section section--pagination">
@@ -30,7 +28,7 @@ const Pagination: React.FC = () => {
             <>
               <button className="btn btn--pagination btn--previous" disabled={search.page === 1} onClick={goToPrevPage}><i className="icon icon--left"><BiChevronLeft /></i> Previous</button>
               <span className="pagination__page">{search.page}</span>
-              <button className="btn btn--pagination btn--next" disabled={search.page === search.totalPages} onClick={goToNextPage}>Next <i className="icon icon--right"><BiChevronRight /></i></button>
+              <button className="btn btn--pagination btn--next" disabled={search.page >= search.totalPages} onClick={goToNextPage}>Next <i className="icon icon--right"><BiChevronRight /></i></button>
             </>
           )
         }

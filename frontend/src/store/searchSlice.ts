@@ -3,7 +3,7 @@ import { searchStateType } from '../types/stateTypes';
 
 const initialState: searchStateType = {
   query: '',
-  category: 'all',
+  category: '',
   page: 1,
   totalPages: null
 };

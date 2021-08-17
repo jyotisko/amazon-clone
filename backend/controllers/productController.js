@@ -77,7 +77,7 @@ exports.processImages = catchAsync(async (req, _, next) => {
 
 exports.getAllProducts = catchAsync(async (req, res, _next) => {
   const filter = {};
-  const limit = 2;
+  const limit = 10;
 
   if (req.query.search) filter.keywords = { $regex: req.query.search, $options: 'i' };
   if (req.query.category) filter.categories = { $regex: req.query.category, $options: 'i' };

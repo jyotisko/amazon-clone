@@ -25,6 +25,8 @@ const HeaderBanner: React.FC = () => {
     if (type === 'right') slidesElement.scrollLeft += width;
   };
 
+  const redirectToLink = (link: string) => window.location.assign(`${window.location.origin}${link}`);
+
   return (
     <header className="header">
       <div className="carousel">
@@ -34,14 +36,16 @@ const HeaderBanner: React.FC = () => {
               <button onClick={() => slide('left')} className="carousel__button carousel__button--left"><BsChevronLeft /></button>
               <button onClick={() => slide('right')} className="carousel__button carousel__button--right"><BsChevronRight /></button>
               <div className="slides" ref={slidesRef}>
-                {banners.map((banner: BannerResponseType, i: number) => {
-                  return (
-                    <div key={banner._id} className={`slide slide--${i + 1}`} style={{
-                      backgroundImage: `url(${banner.image})`,
-                    }}>
-                    </div>
-                  )
-                })}
+                {
+                  banners.map((banner: BannerResponseType, i: number) => {
+                    return (
+                      <div onClick={() => redirectToLink(banner.link)} key={banner._id} className={`slide slide--${i + 1}`} style={{
+                        backgroundImage: `url(${banner.image})`,
+                      }}>
+                      </div>
+                    )
+                  })
+                }
               </div>
             </>
           ) : <Spinner styles={{ top: `20%` }} />

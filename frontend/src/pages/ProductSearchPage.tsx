@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import axios from 'axios';
+import { useHistory } from 'react-router-dom';
 import { useSelector, RootStateOrAny } from 'react-redux';
 import { searchStateType } from '../types/stateTypes';
 import { searchActions } from '../store/searchSlice';
@@ -8,6 +9,7 @@ import { ProductResponseType } from '../types/APIResponseTypes';
 import ProductSearchRows from '../components/Search/ProductSearchRows';
 import Nav from '../components/Nav/Nav';
 import Spinner from '../components/Utils/Spinner';
+import Footer from '../components/Footer/Footer';
 
 interface PromiseReturnType {
   totalPages: number;
@@ -16,6 +18,7 @@ interface PromiseReturnType {
 
 const ProductSearch: React.FC = () => {
   const dispatch = useDispatch();
+  const history = useHistory();
   const search: searchStateType = useSelector((state: RootStateOrAny) => state.search);
   const [isQueryValid, setIsQueryValid] = useState<boolean>(true);
   const [products, setProducts] = useState<ProductResponseType[]>([]);
@@ -35,14 +38,19 @@ const ProductSearch: React.FC = () => {
   };
 
   useEffect(() => {
+    console.log('Location changed')
     const urlParams = new URLSearchParams(window.location.search);
     const query = urlParams.get('query') || search.query || '';
-    const category = urlParams.get('category') || 'all';
+    const category = urlParams.get('category') || search.category || 'all';
     const page = +urlParams.get('page')! || search.page || 1;
 
     if (!query || query === '') return setIsQueryValid(false);
 
+    dispatch(searchActions.updateSearch({ category: category }));
+
     getResults(query, category, page).then((data: PromiseReturnType) => {
+      if (page > data.totalPages) history.push(`/search?query=${query}&page=${data.totalPages}&category=${category}`);
+
       dispatch(searchActions.updateSearch({
         query: query,
         page: page,
@@ -71,6 +79,7 @@ const ProductSearch: React.FC = () => {
           )
         }
       </main>
+      <Footer />
     </React.Fragment>
   );
 };
