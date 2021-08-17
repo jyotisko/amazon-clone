@@ -4,7 +4,7 @@ export interface searchStateType {
   query: string;
   category: string;
   page: number;
-  // results: ProductResponseType[];
+  totalPages: null | number;
 };
 
 export interface currencyStateType {

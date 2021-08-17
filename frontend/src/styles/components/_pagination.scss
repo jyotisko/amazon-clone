@@ -1,0 +1,13 @@
+.pagination {
+  display: grid;
+  grid-template-columns: repeat(3, 120px);
+  font-size: 2rem;
+
+  &__page {
+    height: 100%;
+    width: 100%;
+    border: 1px solid rgba($color-gray-light, 0.2);
+    display: grid;
+    place-items: center;
+  }
+}

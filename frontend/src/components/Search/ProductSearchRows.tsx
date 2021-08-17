@@ -1,4 +1,6 @@
+import React from 'react';
 import { ProductResponseType } from '../../types/APIResponseTypes';
+import Pagination from './Pagination';
 import SearchProduct from './SearchProduct';
 
 interface ProductSearchRowsProps {
@@ -7,11 +9,14 @@ interface ProductSearchRowsProps {
 
 const ProductSearchRows: React.FC<ProductSearchRowsProps> = ({ products }) => {
   return (
-    <section className="section section--search">
-      {
-        products.map((product: ProductResponseType) => <SearchProduct product={product} />)
-      }
-    </section>
+    <React.Fragment>
+      <section className="section section--search">
+        {
+          products.map((product: ProductResponseType) => <SearchProduct key={product._id} product={product} />)
+        }
+      </section>
+      <Pagination />
+    </React.Fragment>
   );
 };
 

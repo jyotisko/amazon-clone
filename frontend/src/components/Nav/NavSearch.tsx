@@ -35,7 +35,7 @@ const NavSearch: React.FC<NavProps> = ({ showSearchHistory = false }) => {
 
   useEffect(() => {
     if (showSearchHistory) setInputQuery(search.query);
-  }, []);
+  }, [search]);
 
   return (
     <form className="nav__search" onSubmit={handleSearch}>

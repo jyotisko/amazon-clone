@@ -10,7 +10,7 @@ const Home = lazy(() => import('./pages/Home'));
 const Login = lazy(() => import('./pages/Login'));
 const Signup = lazy(() => import('./pages/Signup'));
 const ProductDetail = lazy(() => import('./pages/ProductDetail'));
-const ProductSearch = lazy(() => import('./pages/ProductSearch'));
+const ProductSearch = lazy(() => import('./pages/ProductSearchPage'));
 
 const App: React.FC = () => {
   const dispatch = useDispatch();

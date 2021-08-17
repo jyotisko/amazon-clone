@@ -9,6 +9,11 @@ import ProductSearchRows from '../components/Search/ProductSearchRows';
 import Nav from '../components/Nav/Nav';
 import Spinner from '../components/Utils/Spinner';
 
+interface PromiseReturnType {
+  totalPages: number;
+  products: ProductResponseType[];
+};
+
 const ProductSearch: React.FC = () => {
   const dispatch = useDispatch();
   const search: searchStateType = useSelector((state: RootStateOrAny) => state.search);
@@ -16,12 +21,14 @@ const ProductSearch: React.FC = () => {
   const [products, setProducts] = useState<ProductResponseType[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(true);
 
-  const getResults = async (query: string, category: string, page: number): Promise<ProductResponseType[]> => {
+  const getResults = async (query: string, category: string, page: number): Promise<PromiseReturnType> => {
+    setIsLoading(true);
     try {
       const { data } = await axios.get(`/api/v1/products?search=${query}&page=${page}&category=${category === 'all' ? '' : category}`);
-      return data.data.products;
+      const { totalPages, products } = data.data;
+      return { totalPages, products };
     } catch (err) {
-      return [];
+      throw new Error(err);
     } finally {
       setIsLoading(false);
     }
@@ -35,16 +42,18 @@ const ProductSearch: React.FC = () => {
 
     if (!query || query === '') return setIsQueryValid(false);
 
-    dispatch(searchActions.updateSearch({
-      query: query,
-      page: page,
-      category: category
-    }));
+    getResults(query, category, page).then((data: PromiseReturnType) => {
+      dispatch(searchActions.updateSearch({
+        query: query,
+        page: page,
+        category: category,
+        totalPages: data.totalPages
+      }));
 
-    getResults(query, category, page).then((products: ProductResponseType[]) => {
-      return setProducts(products);
+      return setProducts(data.products);
     });
-  }, []);
+
+  }, [window.location.search]);
 
   return (
     <React.Fragment>

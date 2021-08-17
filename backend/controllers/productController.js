@@ -4,6 +4,7 @@ const { nanoid } = require('nanoid');
 const Product = require('../models/productModel');
 const catchAsync = require('../utils/catchAsync');
 const AppError = require('../utils/AppError');
+const APIFeatures = require('../utils/APIFeatures');
 const { multerFilter, multerStorage } = require('../utils/multerConfig.js');
 const uploadImageToCloudinary = require('../utils/cloudinaryUploader');
 
@@ -76,17 +77,22 @@ exports.processImages = catchAsync(async (req, _, next) => {
 
 exports.getAllProducts = catchAsync(async (req, res, _next) => {
   const filter = {};
+  const limit = 2;
 
   if (req.query.search) filter.keywords = { $regex: req.query.search, $options: 'i' };
   if (req.query.category) filter.categories = { $regex: req.query.category, $options: 'i' };
 
-  const products = await Product.find(filter);
+  const { query } = new APIFeatures(Product.find(filter), req.query).paginate(limit);
+  const products = await query;
+
+  const totalPages = Math.ceil((await Product.find(filter)).length / limit);
 
   res.status(200).json({
     status: 'success',
     results: products.length,
     data: {
-      products: products
+      products: products,
+      totalPages: totalPages
     }
   });
 });

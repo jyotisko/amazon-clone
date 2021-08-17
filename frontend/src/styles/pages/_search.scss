@@ -12,3 +12,12 @@
   display: grid;
   grid-row-gap: 4rem;
 }
+
+.section--pagination {
+  height: 60px;
+  width: 100%;
+  padding: 2rem 20rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
