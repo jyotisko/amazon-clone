@@ -12,6 +12,7 @@ const productRouter = require('./routes/productRoutes');
 const reviewRouter = require('./routes/reviewRoutes');
 const wishlistRouter = require('./routes/wishlistRoutes');
 const bannerRouter = require('./routes/bannerRoutes');
+const cartRouter = require('./routes/cartRoutes');
 const AppError = require('./utils/AppError');
 
 const app = express();
@@ -30,6 +31,7 @@ app.use('/api/v1/products', productRouter);
 app.use('/api/v1/reviews', reviewRouter);
 app.use('/api/v1/wishlists', wishlistRouter);
 app.use('/api/v1/banners', bannerRouter);
+app.use('/api/v1/carts', cartRouter);
 
 // ERROR HANDLING
 app.all('*', (req, _, next) => {

@@ -12,7 +12,7 @@ router
   .post(wishlistController.createNewWishist);
 
 router
-  .route('/:id')
+  .route('/:productId')
   .delete(wishlistController.deleteWishlist);
 
 module.exports = router;

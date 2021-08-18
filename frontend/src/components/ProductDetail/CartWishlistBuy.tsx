@@ -1,14 +1,18 @@
 import { RootStateOrAny, useSelector } from 'react-redux';
 import { BsFillLockFill } from 'react-icons/bs';
 import { ProductResponseType } from '../../types/APIResponseTypes';
+import { authStateType, currencyStateType } from '../../types/stateTypes';
 import { getDeliveryDate } from '../../utils';
+import AddToListButton from './AddToListButton';
+import AddToCartButton from './AddToCartButton';
 
 export interface CartWishlistBuyProps {
   product: ProductResponseType;
 };
 
-const CartWishlistBuy: React.SFC<CartWishlistBuyProps> = ({ product }) => {
-  const currency = useSelector((state: RootStateOrAny) => state.currency);
+const CartWishlistBuy: React.FC<CartWishlistBuyProps> = ({ product }) => {
+  const currency: currencyStateType = useSelector((state: RootStateOrAny) => state.currency);
+  const { user }: authStateType = useSelector((state: RootStateOrAny) => state.auth);
 
   return (
     <section className="product__cart-wishlist-buy">
@@ -19,10 +23,7 @@ const CartWishlistBuy: React.SFC<CartWishlistBuyProps> = ({ product }) => {
       <h4 className="product__cart-wishlist-buy__delivery">Expected Delivery: <span className="product__cart-wishlist-buy__delivery__date">{getDeliveryDate(5)}</span></h4>
       <h1 className={`product__cart-wishlist-buy__stock ${!product.isInStock && 'out-of-stock'}`}>{product.isInStock ? 'In stock' : 'Out of stock'}</h1>
       <div className="product__cart-wishlist-buy__options">
-        <select defaultValue={1}>
-          {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((value, index) => <option key={index} value={value}>{value}</option>)}
-        </select>
-        <button className="btn btn--add-to-cart">Add to Cart</button>
+        <AddToCartButton productId={product._id} user={user} />
         <button className="btn btn--buy">Buy Now</button>
       </div>
       <div className="product__cart-wishlist-buy__transaction">
@@ -36,7 +37,7 @@ const CartWishlistBuy: React.SFC<CartWishlistBuyProps> = ({ product }) => {
           <span className="product__cart-wishlist-buy__transaction__detail__value">Amazon.com</span>
         </h5>
       </div>
-      <button className="btn btn--wishlist">Add to list</button>
+      <AddToListButton productId={product._id} user={user} />
     </section>
   );
 };

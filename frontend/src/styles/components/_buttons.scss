@@ -4,12 +4,14 @@
   &--add-to-cart,
   &--buy,
   &--wishlist {
+    position: relative;
     border: none;
     outline: none;
     width: 100%;
     font-size: 1.4rem;
     padding: 0.8rem 0;
     border-radius: 3rem;
+    height: 35px;
   }
 
   &--add-to-cart { 
