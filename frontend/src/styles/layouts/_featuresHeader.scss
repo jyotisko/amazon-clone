@@ -1,0 +1,9 @@
+.header--features {
+  &__text {
+    font-size: 3rem;
+    transform: translateY(-20%);
+    cursor: default;
+  }
+
+  &__image { transform: translate(20%, 10%); }
+}

@@ -1,6 +1,7 @@
+import React, { useState, useEffect, useRef } from 'react';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { BsChevronLeft, BsChevronRight } from 'react-icons/bs';
-import React, { useState, useEffect, useRef } from 'react';
 import { BannerResponseType } from '../../types/APIResponseTypes';
 import Spinner from '../Utils/Spinner';
 
@@ -25,8 +26,6 @@ const HeaderBanner: React.FC = () => {
     if (type === 'right') slidesElement.scrollLeft += width;
   };
 
-  const redirectToLink = (link: string) => window.location.assign(`${window.location.origin}${link}`);
-
   return (
     <header className="header">
       <div className="carousel">
@@ -39,9 +38,10 @@ const HeaderBanner: React.FC = () => {
                 {
                   banners.map((banner: BannerResponseType, i: number) => {
                     return (
-                      <div onClick={() => redirectToLink(banner.link)} key={banner._id} className={`slide slide--${i + 1}`} style={{
+                      <div key={banner._id} className={`slide slide--${i + 1}`} style={{
                         backgroundImage: `url(${banner.image})`,
                       }}>
+                        <Link to={banner.link}></Link>
                       </div>
                     )
                   })

@@ -55,5 +55,16 @@
     border-bottom-right-radius: 1rem;
   }
 
+  &--outlined {
+    font-size: 1.4rem;
+    background-color: transparent;
+    border: 2px solid $color-blue-lighter;
+    padding: 1rem 2rem;
+    border-radius: 2px;
+    color: $color-blue-lighter;
+    font-weight: 600;
+    letter-spacing: 0.8px;
+  }
+
   &:disabled { cursor: not-allowed; }
 }

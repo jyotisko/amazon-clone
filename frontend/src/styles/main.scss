@@ -19,12 +19,15 @@
 @import './components/productInfo';
 @import './components/searchProduct';
 @import './components/pagination';
+@import './components/featureRow';
 
 @import './layouts/nav';
 @import './layouts/footer';
 @import './layouts/authNav';
 @import './layouts/authFooter';
+@import './layouts/featuresHeader';
 
 @import './pages/home';
 @import './pages/productDetail';
 @import './pages/search';
+@import './pages/features';

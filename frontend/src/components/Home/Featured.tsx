@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import { RootStateOrAny, useSelector } from 'react-redux';
 import { authStateType } from '../../types/stateTypes';
 import amazonBasics from '../../assets/amazon-basics.jpg';
@@ -38,7 +39,7 @@ const Featured: React.FC = () => {
             {auth.isLoggedIn || <a className="feature__signin__link" href="#">Sign in securely</a>}
           </div>
           <div className="feature__prime">
-            <img src={amazonPrime} alt="Amazon Prime" className="feature__prime__image" />
+            <Link to='/features'><img src={amazonPrime} alt="Amazon Prime" className="feature__prime__image" /></Link>
           </div>
         </div>
         <div className="feature feature--5">

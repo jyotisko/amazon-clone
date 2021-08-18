@@ -35,5 +35,14 @@
     width: 100%;
     background-position: left right;
     flex: 0 0 100%;
+    position: relative;
+
+    a {
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 100%;
+    }
   }
 }
