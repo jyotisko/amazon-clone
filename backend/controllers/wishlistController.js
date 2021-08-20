@@ -40,8 +40,17 @@ exports.getMyWishlists = catchAsync(async (req, res, _next) => {
   });
 });
 
-exports.deleteWishlist = catchAsync(async (req, res, _next) => {
+exports.deleteMyWishlist = catchAsync(async (req, res, _next) => {
   await Wishlist.findOneAndDelete({ product: req.params.productId, user: req.user._id });
+
+  res.status(204).json({
+    status: 'success',
+    data: null
+  });
+});
+
+exports.deleteReview = catchAsync(async (req, res, _next) => {
+  await Wishlist.findByIdAndDelete(req.params.id);
 
   res.status(204).json({
     status: 'success',

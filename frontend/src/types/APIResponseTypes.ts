@@ -39,3 +39,10 @@ export interface UserResponseType {
   phone: number;
   email: string;
 };
+
+export interface WishlistResponseType {
+  _id: string;
+  user: string;
+  product: ProductResponseType;
+  createdAt: Date;
+};

@@ -25,7 +25,7 @@ const ProductDetail: React.FC = () => {
 
   return (
     <React.Fragment>
-      <Nav />
+      <Nav showSearchHistory={true} />
       <main className="main main--product">
         {
           product ? (

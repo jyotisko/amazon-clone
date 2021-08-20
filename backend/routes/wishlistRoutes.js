@@ -5,14 +5,17 @@ const authController = require('../controllers/authController');
 const router = express.Router();
 
 router.use(authController.protect);
+
 router.get('/myWishlists', wishlistController.getMyWishlists);
+router.delete('/myWishlists/:productId', wishlistController.deleteMyWishlist)
+
 router
   .route('/')
   .get(authController.restrictTo('admin'), wishlistController.getAllWishlists)
   .post(wishlistController.createNewWishist);
 
 router
-  .route('/:productId')
-  .delete(wishlistController.deleteWishlist);
+  .route('/:id')
+  .delete(authController.restrictTo('admin'), wishlistController.deleteMyWishlist);
 
 module.exports = router;

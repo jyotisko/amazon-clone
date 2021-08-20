@@ -21,10 +21,13 @@
   &__main {
     height: 100%;
     width: 100%;
+    object-fit: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
-    img {
-      height: 100%;
-      width: 100%;
-    }
+    img { height: 100%; }
+
+    .enlarged-image { z-index: 100; }
   }
 }

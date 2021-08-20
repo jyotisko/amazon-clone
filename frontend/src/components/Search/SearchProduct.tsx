@@ -2,7 +2,7 @@ import { RootStateOrAny, useSelector } from 'react-redux';
 import { NavLink, Link } from 'react-router-dom';
 import { currencyStateType } from '../../types/stateTypes';
 import { ProductResponseType } from '../../types/APIResponseTypes';
-import { getDeliveryDate } from '../../utils';
+import { getDate } from '../../utils';
 
 export interface SearchProductProps {
   product: ProductResponseType;
@@ -21,7 +21,7 @@ const SearchProduct: React.FC<SearchProductProps> = ({ product }) => {
       <div className="product-search__right">
         <Link to={`/product/${product._id}`}><h2 className="product-search__name">{product.name}</h2></Link>
         <Link to={`/product/${product._id}`}><h2 className="product-search__price"><span className="product-search__currency-symbol">{symbol}</span>{multiplier * product.priceOffer}</h2></Link>
-        <h3 className="product-search__delivery">Get it as soon as <span className="product-search__delivery__date">{getDeliveryDate(5)}</span></h3>
+        <h3 className="product-search__delivery">Get it as soon as <span className="product-search__delivery__date">{getDate(5)}</span></h3>
       </div>
     </div>
   );

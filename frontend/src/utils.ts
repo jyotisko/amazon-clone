@@ -2,10 +2,10 @@ export const EMAIL_REGEX = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|
 export const PASSWORD_REGEX = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/;
 export const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 
-export const getDeliveryDate = (days: number): string => {
-  const deliveryTimestamp = new Date(Date.now() + (days * 24 * 60 * 60 * 1000));
-  const day = deliveryTimestamp.getDate();
-  const weekDay = new Intl.DateTimeFormat('en-US', { weekday: 'long' }).format(deliveryTimestamp);
-  const month = MONTHS[deliveryTimestamp.getMonth()];
+export const getDate = (days: number): string => {
+  const dateTimestamp = new Date(Date.now() + (days * 24 * 60 * 60 * 1000));
+  const day = dateTimestamp.getDate();
+  const weekDay = new Intl.DateTimeFormat('en-US', { weekday: 'long' }).format(dateTimestamp);
+  const month = MONTHS[dateTimestamp.getMonth()];
   return `${weekDay}, ${month} ${day}`;
 }

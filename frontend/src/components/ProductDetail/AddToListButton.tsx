@@ -22,7 +22,7 @@ const AddToListButton: React.FC<AddToListButtonProps> = ({ productId, user }) =>
 
   const removeItemFromList = async () => {
     try {
-      await axios.delete(`/api/v1/wishlists/${productId}`);
+      await axios.delete(`/api/v1/wishlists/myWishlists/${productId}`);
       setIsAddedToList(false);
     } catch (err) {
       throw new Error(err.response?.data?.message);

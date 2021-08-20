@@ -2,7 +2,7 @@ import { RootStateOrAny, useSelector } from 'react-redux';
 import { BsFillLockFill } from 'react-icons/bs';
 import { ProductResponseType } from '../../types/APIResponseTypes';
 import { authStateType, currencyStateType } from '../../types/stateTypes';
-import { getDeliveryDate } from '../../utils';
+import { getDate } from '../../utils';
 import AddToListButton from './AddToListButton';
 import AddToCartButton from './AddToCartButton';
 
@@ -20,7 +20,7 @@ const CartWishlistBuy: React.FC<CartWishlistBuyProps> = ({ product }) => {
         <h3 className="product__cart-wishlist-buy__price__text">Buy now:</h3>
         <h3 className="product__cart-wishlist-buy__price__value">{currency.symbol}{product.priceOffer * currency.multiplier}</h3>
       </div>
-      <h4 className="product__cart-wishlist-buy__delivery">Expected Delivery: <span className="product__cart-wishlist-buy__delivery__date">{getDeliveryDate(5)}</span></h4>
+      <h4 className="product__cart-wishlist-buy__delivery">Expected Delivery: <span className="product__cart-wishlist-buy__delivery__date">{getDate(5)}</span></h4>
       <h1 className={`product__cart-wishlist-buy__stock ${!product.isInStock && 'out-of-stock'}`}>{product.isInStock ? 'In stock' : 'Out of stock'}</h1>
       <div className="product__cart-wishlist-buy__options">
         <AddToCartButton productId={product._id} user={user} />

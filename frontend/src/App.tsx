@@ -12,6 +12,7 @@ const Signup = lazy(() => import('./pages/Signup'));
 const ProductDetail = lazy(() => import('./pages/ProductDetail'));
 const ProductSearch = lazy(() => import('./pages/ProductSearchPage'));
 const Features = lazy(() => import('./pages/Features'));
+const Wishlist = lazy(() => import('./pages/Wishlist'));
 
 const App: React.FC = () => {
   const dispatch = useDispatch();
@@ -33,6 +34,7 @@ const App: React.FC = () => {
           <Route path='/product/:id' component={ProductDetail} />
           <Route path='/search' component={ProductSearch} />
           <Route path='/features' component={Features} />
+          <Route path='/wishlist' component={Wishlist} />
         </Suspense>
       </Switch>
     </React.Fragment>

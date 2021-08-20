@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import ReactImageMagnify from 'react-image-magnify';
 import { ProductResponseType } from '../../types/APIResponseTypes';
 
 interface ImagesProps {
@@ -17,7 +18,18 @@ const Images: React.FC<ImagesProps> = ({ product }) => {
         }
       </div>
       <div className="product-images__main">
-        <img src={allImages[currentImageIndex]} alt={product.name} loading='lazy' />
+        <ReactImageMagnify enlargedImageContainerClassName="enlarged-image" fadeDurationInMs={200} {...{
+          smallImage: {
+            alt: product.name,
+            isFluidWidth: true,
+            src: allImages[currentImageIndex],
+          },
+          largeImage: {
+            src: allImages[currentImageIndex],
+            width: 1800,
+            height: 1800
+          }
+        }} />
       </div>
     </div>
   );

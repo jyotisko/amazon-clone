@@ -1,0 +1,222 @@
+.wishlist {  
+  position: relative;
+  
+  &__empty-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 2rem;
+  }
+
+  &__nav {
+    height: 60px;
+    width: 100%;
+    background-color: rgba($color-gray-light, 0.3);
+
+    &__title {
+      padding: 1rem 2rem;
+      width: auto;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 2.5rem;
+      background-color: $color-white-light;
+      display: inline-block;
+      color: $color-yellow-dark;
+      border-top: 1px solid $color-yellow-dark;
+    }
+  }
+
+  &__options {
+    padding: 2rem 4rem;
+    height: 60px;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__icon {
+    position: relative;
+    font-size: 2rem;
+    cursor: pointer;
+
+    &:not(:last-child) { margin-right: 1rem; }
+
+    &--active::after {
+      content: '';
+      display: block;
+      position: absolute;
+      height: 3px;
+      width: 100%;
+      background-color: $color-red-medium;
+      bottom: 0;
+      left: 0;
+    }
+  }
+
+  &__form {
+    height: 100%;
+    display: flex;
+    align-items: center;
+
+    &__content {
+      position: relative;
+    }
+
+    &__icon {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-40%);
+      font-size: 2rem;
+      left: 2%;
+
+    }
+
+    &__input {
+      font-size: 1.6rem;
+      padding: 0.6rem 1rem;
+      padding-left: 3rem;
+      border: 1px solid $color-black-dark;
+      outline: none;
+      border-radius: 4px;
+
+      &::placeholder { font-size: 75%; }
+
+      &:focus {
+        border: 1px solid $color-blue-light;
+        background-color: rgba($color-blue-light, 0.03);
+        box-shadow: 0px 0px 14px 1px rgba($color-blue-light, 0.1);
+      }
+    }
+  }
+}
+
+.wishlist__list {
+  padding: 2rem 4rem;
+  display: grid;
+  grid-template-rows: repeat(auto-fit, 200px);
+  grid-row-gap: 10rem;
+  overflow: hidden;
+  
+  &__product {
+    height: 100%;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 19% 53% 24%;
+    grid-template-rows: 100%;
+    grid-column-gap: 3rem;
+    object-fit: cover;
+
+    &__image { 
+      width: 100%;
+    }
+
+    &__name {
+      @include link(1.8rem);
+      font-weight: 400;
+      margin-bottom: 1rem;
+    }
+
+    &__ratings { 
+      display: flex; 
+      align-items: center;
+    }
+
+    &__ratings-quantity {
+      @include link(1.4rem);
+      cursor: pointer;
+      font-weight: 400;
+      margin-left: 0.6rem;
+      transform: translateY(-2px);
+    }
+
+    &__price {
+      font-size: 1.6rem;
+      color: $color-red-medium;
+      font-weight: 400;
+    }
+
+    &__currency { 
+      display: inline-block;
+      color: $color-black-dark;
+      font-size: 70%;
+      transform: translateY(-3px);
+    }
+
+    &__controls {
+      height: 100%;
+      width: 100%;
+    }
+
+    &__button {
+      width: 100%;
+    }
+
+    &__date {
+      font-size: 1.4rem;
+      letter-spacing: 0.2px;
+      font-weight: 300;
+      margin-bottom: 1rem;
+    }
+  }
+}
+
+.wishlist__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 300px);
+  grid-auto-rows: 300px;
+  grid-gap: 2rem;
+  padding: 2rem;
+  justify-content: center;
+
+  &__item { 
+    position: relative;
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    padding: 3rem;
+    
+    &::after {
+      content: '';
+      display: block;
+      position: absolute;
+      height: 100%;
+      width: 100%;
+      top: 0;
+      left: 0;
+      background-color: rgba($color-gray-light, 0.05);
+    }
+  }
+
+  &__image {
+    height: 100%;
+    width: 100%;
+  }
+
+  &__controls {
+    position: absolute;
+    top: 4rem;
+    left: 0;
+    width: 100%;
+    padding: 2rem;
+    background-color: $color-white-light;
+    z-index: 20;
+    border: 1px solid rgba($color-black-light, 0.3);
+    box-shadow: 0px 0px 5px 0px rgba($color-black-light, 0.4);
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.2s ease-in-out;
+
+    &.open {
+      opacity: 1;
+      pointer-events: all;
+    }
+  }
+
+  &__delete {
+    display: inline-block;
+    cursor: pointer;
+    font-weight: 400;
+  }
+}

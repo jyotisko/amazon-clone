@@ -1,0 +1,14 @@
+.main--wishlist {
+  padding: 4rem 20rem;
+  min-height: 60vh;
+  max-height: auto;
+  background-color: $color-white-light;
+  display: grid;
+}
+
+.section--wishlist-box {
+  width: 100%;
+  min-height: 310px;
+  border: 1px solid rgba($color-gray-light, 0.2);
+  border-radius: 0.8rem;
+}
