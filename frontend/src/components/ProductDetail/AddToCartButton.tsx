@@ -1,30 +1,37 @@
 import axios from 'axios';
 import React, { useEffect, useState, useRef } from 'react';
+import { RootStateOrAny, useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import { UserResponseType } from '../../types/APIResponseTypes';
+import { UserResponseType, ProductResponseType } from '../../types/APIResponseTypes';
 import Spinner from '../Utils/Spinner';
+import { cartActions } from '../../store/cartSlice';
+import { cartStateType } from '../../types/stateTypes';
 
 export interface AddToCartButtonProps {
-  productId: string;
+  product: ProductResponseType;
   user: null | UserResponseType;
 };
 
-const AddToCartButton: React.FC<AddToCartButtonProps> = ({ productId, user }) => {
+const AddToCartButton: React.FC<AddToCartButtonProps> = ({ product, user }) => {
+  const cart: cartStateType = useSelector((state: RootStateOrAny) => state.cart);
+  const dispatch = useDispatch();
   const selectRef = useRef<HTMLSelectElement>(null);
   const history = useHistory();
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [isAddedToCart, setIsAddedToCart] = useState<boolean>(false);
 
   const checkIfProductIsAlreadyInCart = async () => {
-    const { data } = await axios.get(`/api/v1/carts/myCarts?product=${productId}`);
-    if (data.data.cartItems.length > 0) setIsAddedToCart(true);
+    if (!cart.items) return setIsAddedToCart(false);
+    if ((cart.items.filter(item => item.product._id === product._id)).length > 0) setIsAddedToCart(true);
     setIsLoading(false);
   };
 
   const removeItemFromCart = async () => {
     try {
-      await axios.delete(`/api/v1/carts/${productId}`);
+      await axios.delete(`/api/v1/carts/myCarts/${product._id}`);
       setIsAddedToCart(false);
+
+      dispatch(cartActions.removeItemFromCart({ productId: product._id }));
     } catch (err) {
       throw new Error(err?.response?.data?.message);
     }
@@ -33,10 +40,18 @@ const AddToCartButton: React.FC<AddToCartButtonProps> = ({ productId, user }) =>
   const addItemToCart = async () => {
     try {
       await axios.post('/api/v1/carts', {
-        product: productId,
+        product: product._id,
         quantity: selectRef.current?.value || 1
       });
+
       setIsAddedToCart(true);
+
+      dispatch(cartActions.addItemToCart({
+        item: {
+          quantity: selectRef.current?.value || 1,
+          product: product
+        }
+      }));
     } catch (err) {
       throw new Error(err?.response?.data?.message);
     }
@@ -58,7 +73,7 @@ const AddToCartButton: React.FC<AddToCartButtonProps> = ({ productId, user }) =>
   useEffect(() => {
     if (!user) return setIsLoading(false);
     checkIfProductIsAlreadyInCart();
-  }, []);
+  }, [cart.items]);
 
   return (
     <React.Fragment>

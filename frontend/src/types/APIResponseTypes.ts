@@ -46,3 +46,11 @@ export interface WishlistResponseType {
   product: ProductResponseType;
   createdAt: Date;
 };
+
+export interface CartResponseType {
+  _id: string;
+  quantity: number;
+  product: ProductResponseType;
+  user: UserResponseType;
+  createdAt: Date;
+};

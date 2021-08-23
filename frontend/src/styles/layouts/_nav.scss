@@ -173,11 +173,33 @@
   }
 
   &__cart {
+    position: relative;
     display: flex;
     font-size: 1rem;
     font-weight: 400;
+    color: $color-white-light;
+    text-decoration: none;
+
     i { font-size: 3.4rem; }
-    h4 { font-size: 1.4rem; margin-left: 1rem;}
+
+    h4 { 
+      font-size: 1.4rem; 
+      margin-left: 1rem;
+    }
+
+    h2 {
+      position: absolute;
+      top: 0;
+      left: 12%;
+      height: 2rem;
+      width: 2rem;
+      color: $color-black-dark;
+      background-color: $color-yellow-bright;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 50%;
+    }
   }
 
   &__logo,

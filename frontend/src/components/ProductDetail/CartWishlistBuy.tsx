@@ -23,7 +23,7 @@ const CartWishlistBuy: React.FC<CartWishlistBuyProps> = ({ product }) => {
       <h4 className="product__cart-wishlist-buy__delivery">Expected Delivery: <span className="product__cart-wishlist-buy__delivery__date">{getDate(5)}</span></h4>
       <h1 className={`product__cart-wishlist-buy__stock ${!product.isInStock && 'out-of-stock'}`}>{product.isInStock ? 'In stock' : 'Out of stock'}</h1>
       <div className="product__cart-wishlist-buy__options">
-        <AddToCartButton productId={product._id} user={user} />
+        <AddToCartButton product={product} user={user} />
         <button className="btn btn--buy">Buy Now</button>
       </div>
       <div className="product__cart-wishlist-buy__transaction">

@@ -1,0 +1,76 @@
+.history {
+  &__header {
+    &__text,
+    &__manage-text {
+      font-size: 2.4rem;
+      font-weight: 400;
+    }
+
+    &__manage-text {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 22rem;
+      cursor: pointer;
+
+      .open {
+        transform: rotateZ(180deg);
+      }
+    }
+  }
+
+  &__manage {
+    &__text {
+      display: flex;
+      align-items: center;
+      font-size: 2rem;
+      font-weight: 400;
+      padding-right: 2rem;
+      border-right: 1px solid rgba($color-gray-light, 0.4);
+      height: 100%;
+    }
+
+    &__button { margin: 0 2rem; }
+  }
+
+  &__toggle {
+    display: flex;
+    font-size: 1.4rem;
+    border-left: 1px solid rgba($color-gray-light, 0.4);
+    padding-left: 2rem;
+    align-items: center;
+    height: 100%;
+
+    &__text {
+      font-weight: 400;
+      margin-right: 1rem;
+    }
+
+    &__state { margin-right: 1rem; }
+
+    &__switch {
+      position: relative;
+      height: 2.5rem;
+      width: 5rem;
+      background-color: $color-blue-light;
+      border-radius: 3px;
+
+      &::before {
+        content: '';
+        display: block;
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        height: 95%;
+        width: 2.4rem;
+        cursor: pointer;
+        border-radius: 3px;
+        background-color: $color-white-light;
+        transition: all 0.9s ease;
+      }
+
+      &.off::before { left: 2%; }
+      &.on::before { right: 2%; }
+    }
+  }
+}

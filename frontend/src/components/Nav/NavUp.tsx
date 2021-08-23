@@ -5,6 +5,7 @@ import logo from '../../assets/logo.svg';
 import UserCountry from './UserCountry'
 import NavSearch from './NavSearch';
 import DropdownMenu from './DropdownMenu';
+import NavCart from './NavCart';
 
 const NavUp = ({ showSearchHistory = false }) => {
   const dropdownRef = useRef<HTMLDivElement>(null);
@@ -39,10 +40,7 @@ const NavUp = ({ showSearchHistory = false }) => {
           <h4>Orders</h4>
         </div>
       </div>
-      <div className="nav__cart">
-        <i><FiShoppingCart /></i>
-        <h4>Cart</h4>
-      </div>
+      <NavCart />
     </div>
   );
 }

@@ -18,3 +18,17 @@ export interface authStateType {
   user: UserResponseType | null;
   isLoggedIn: boolean;
 };
+
+export interface cartStateType {
+  items: {
+    quantity: number;
+    product: ProductResponseType;
+  }[] | null,
+  totalPrice: number;
+  totalItems: number;
+};
+
+export interface historyStateType {
+  products: ProductResponseType[];
+  captureHistory: boolean;
+}

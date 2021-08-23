@@ -1,0 +1,122 @@
+.main--cart {
+  min-height: 60vh;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 82% 17%;
+  padding: 2rem;
+  grid-column-gap: 2rem;
+
+  .cart__items,
+  .cart__checkout {
+    position: relative;
+    height: 100%;
+    width: 100%;
+    background-color: $color-white-light;
+    padding: 2rem;
+  }
+
+  .cart__checkout {
+    height: 10rem;
+
+    &__text {
+      font-size: 1.8rem;
+      font-weight: 400;
+      margin-bottom: 1rem;
+    }
+
+    &__price {
+      font-weight: 800;
+    }
+  }
+
+  .cart__heading {
+    position: relative;
+    width: 100%;
+    height: 5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 1rem;
+
+    &__title {
+      font-size: 2.8rem;
+      font-weight: 400;
+    }
+    
+    &__text {
+      font-size: 1.4rem;
+      font-weight: 400;
+      color: $color-gray-light;
+    }
+
+    &::after {
+      content: '';
+      display: block;
+      position: absolute;
+      bottom: -0.2rem;
+      height: 1px;
+      width: 100%;
+      background-color: rgba($color-gray-light, 0.3);
+    }
+  }
+
+  .cart__item {
+    position: relative;
+    height: 20rem;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 20% 65% 15%;
+    grid-template-rows: 20rem;
+    padding: 2rem 0;
+
+    &:not(:last-child) { margin-bottom: 2rem; }
+
+    &__image-container {
+      height: 100%;
+      width: 100%;
+      object-fit: cover;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 2rem;
+    }
+
+    &__image { height: 100%; }
+
+    &__name {
+      @include link(2rem);
+      margin-bottom: 1rem;
+    }
+
+    &__stock {
+      font-size: 1.2rem;
+      font-weight: 400;
+      color: $color-green-medium;
+      margin-bottom: 2rem;
+
+      &--red { color: $color-red-medium; }
+    }
+
+    &__select {
+      font-size: 1.6rem;
+      padding: 0.7rem 0.8rem;
+      background-color: rgba($color-gray-light, 0.09);
+      border: 1px solid rgba($color-gray-light, 0.1);
+      cursor: pointer;
+      margin-right: 1rem;
+      border-radius: 1rem;
+      box-shadow: 0px 0px 9px 1px rgba($color-gray-light, 0.1);
+    }
+
+    &__price {
+      text-align: right;
+      font-size: 1.8rem;
+    }
+  }
+
+  .cart__empty {
+    font-size: 2rem;
+    color: $color-gray-light;
+    font-weight: 400;
+  }
+}

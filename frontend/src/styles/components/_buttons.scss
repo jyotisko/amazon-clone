@@ -1,10 +1,10 @@
 .btn {
   cursor: pointer;
+  position: relative;
 
   &--add-to-cart,
   &--buy,
   &--wishlist {
-    position: relative;
     border: none;
     outline: none;
     width: 100%;
@@ -66,6 +66,33 @@
     color: $color-blue-lighter;
     font-weight: 600;
     letter-spacing: 0.8px;
+  }
+
+  &--delete {
+    border: none;
+    outline: none;
+    background-color: transparent;
+    @include link(1.3rem);
+  }
+
+  &--checkout {
+    font-size: 1.4rem;
+    width: 100%;
+    padding: 0.7rem 0;
+    border: none;
+    outline: none;
+    border-radius: 4px;
+    background-color: $color-yellow-bright;
+  }
+
+  &--remove-history {
+    font-size: 1.3rem;
+    border: 1px solid rgba($color-gray-light, 0.2);
+    background-color: transparent;
+    padding: 0.6rem 1.2rem;
+    border-radius: 1rem;
+    margin-right: 2rem;
+    box-shadow: 0px 0px 8px 0px rgba($color-gray-light, 0.2);
   }
 
   &:disabled { cursor: not-allowed; }

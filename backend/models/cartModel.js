@@ -27,7 +27,6 @@ cartSchema.pre(/^find/, function (next) {
     select: 'name photo'
   }).populate({
     path: 'product',
-    select: 'name'
   });
   next();
 });

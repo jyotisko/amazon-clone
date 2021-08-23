@@ -41,9 +41,23 @@ exports.createCartItem = catchAsync(async (req, res, _next) => {
   });
 });
 
-exports.deleteCartItem = catchAsync(async (req, res, _next) => {
+exports.updateMyCartItem = catchAsync(async (req, res, _next) => {
+  const item = await Cart.findOneAndUpdate({
+    product: req.params.productId,
+    user: req.user._id
+  }, { quantity: +req.body.quantity }, { new: true });
+
+  res.status(201).json({
+    status: 'success',
+    data: {
+      cartItem: item
+    }
+  });
+});
+
+exports.deleteMyCartItem = catchAsync(async (req, res, _next) => {
   await Cart.deleteOne({
-    product: req.params.product,
+    product: req.params.productId,
     user: req.user._id
   });
 

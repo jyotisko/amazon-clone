@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
+import { useDispatch } from 'react-redux';
 import { ProductResponseType } from '../types/APIResponseTypes';
+import { historyActions } from '../store/historySlice';
 import Nav from '../components/Nav/Nav';
 import Spinner from '../components/Utils/Spinner';
 import Overview from '../components/ProductDetail/Overview';
@@ -11,6 +13,7 @@ import Information from '../components/ProductDetail/Information';
 import Footer from '../components/Footer/Footer';
 
 const ProductDetail: React.FC = () => {
+  const dispatch = useDispatch();
   const { id } = useParams();
   const [product, setProduct] = useState<ProductResponseType>();
 
@@ -20,7 +23,12 @@ const ProductDetail: React.FC = () => {
   };
 
   useEffect(() => {
-    getProduct(id).then(product => setProduct(product));
+    getProduct(id).then((product) => {
+      dispatch(historyActions.addProductToHistory({
+        product: product
+      }))
+      return setProduct(product)
+    });
   }, []);
 
   return (

@@ -3,6 +3,7 @@ import { Switch, Route } from 'react-router-dom';
 import axios from 'axios';
 import { useDispatch } from 'react-redux';
 import { authActions } from './store/authSlice';
+import { historyActions } from './store/historySlice';
 import Spinner from './components/Utils/Spinner';
 
 // Lazy loaded components
@@ -13,11 +14,30 @@ const ProductDetail = lazy(() => import('./pages/ProductDetail'));
 const ProductSearch = lazy(() => import('./pages/ProductSearchPage'));
 const Features = lazy(() => import('./pages/Features'));
 const Wishlist = lazy(() => import('./pages/Wishlist'));
+const Cart = lazy(() => import('./pages/Cart'));
+const History = lazy(() => import('./pages/History'));
 
 const App: React.FC = () => {
   const dispatch = useDispatch();
 
+  // Setup history for first time visitors
+  const setupLocalStorage = () => {
+    if (!localStorage.getItem('history')) localStorage.setItem('history', JSON.stringify([]));
+    if (localStorage.getItem('captureHistory') === null) localStorage.setItem('captureHistory', 'true');
+  };
+
+  const setHistoryState = () => {
+    const products = JSON.parse(localStorage.getItem('history')!);
+    const captureHistory = JSON.parse(localStorage.getItem('captureHistory')!);
+    dispatch(historyActions.configureHistory({
+      products: products,
+      captureHistory: captureHistory
+    }))
+  };
+
   useEffect(() => {
+    setupLocalStorage();
+    setHistoryState();
     (async () => {
       const { data } = await axios.get('/api/v1/users/isLoggedIn', { withCredentials: true });
       if (data.data?.user) dispatch(authActions.login({ user: data.data.user }));
@@ -35,6 +55,8 @@ const App: React.FC = () => {
           <Route path='/search' component={ProductSearch} />
           <Route path='/features' component={Features} />
           <Route path='/wishlist' component={Wishlist} />
+          <Route path='/cart' component={Cart} />
+          <Route path='/history' component={History} />
         </Suspense>
       </Switch>
     </React.Fragment>
