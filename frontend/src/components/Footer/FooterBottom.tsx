@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import { RootStateOrAny, useSelector } from 'react-redux';
 import { currencyStateType } from '../../types/stateTypes';
 import React from 'react';
@@ -9,7 +10,7 @@ const FooterBottom: React.FC = () => {
   return (
     <div className="footer__bottom">
       <img className="footer__logo" src={Logo} alt="Amazon Logo" />
-      <h3 className="footer__currency">{currency.symbol} {currency.currency} - {currency.currencyName}</h3>
+      <Link to="/currency" className="footer__currency">{currency.symbol} {currency.currency} - {currency.currencyName}</Link>
     </div>
   );
 }

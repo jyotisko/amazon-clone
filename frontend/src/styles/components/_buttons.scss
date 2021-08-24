@@ -75,7 +75,8 @@
     @include link(1.3rem);
   }
 
-  &--checkout {
+  &--checkout,
+  &--yellow {
     font-size: 1.4rem;
     width: 100%;
     padding: 0.7rem 0;
@@ -84,6 +85,8 @@
     border-radius: 4px;
     background-color: $color-yellow-bright;
   }
+
+  &--yellow:hover { background-color: rgba($color-yellow-bright, 0.8); }
 
   &--remove-history {
     font-size: 1.3rem;

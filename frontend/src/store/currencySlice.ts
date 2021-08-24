@@ -13,9 +13,10 @@ const currencySlice = createSlice({
   initialState: initialState,
   reducers: {
     changeCurrency(state, action) {
-      state.currency = action.payload.currency;
-      state.symbol = action.payload.symbol;
-      state.multiplier = action.payload.multiplier;
+      state.currency = action.payload.currency || state.currency;
+      state.symbol = action.payload.symbol || state.symbol;
+      state.multiplier = action.payload.multiplier || state.multiplier;
+      state.currencyName = action.payload.currencyName || state.currencyName;
     }
   }
 });

@@ -5,6 +5,7 @@ import { useDispatch } from 'react-redux';
 import { authActions } from './store/authSlice';
 import { historyActions } from './store/historySlice';
 import Spinner from './components/Utils/Spinner';
+import { currencyActions } from './store/currencySlice';
 
 // Lazy loaded components
 const Home = lazy(() => import('./pages/Home'));
@@ -16,6 +17,7 @@ const Features = lazy(() => import('./pages/Features'));
 const Wishlist = lazy(() => import('./pages/Wishlist'));
 const Cart = lazy(() => import('./pages/Cart'));
 const History = lazy(() => import('./pages/History'));
+const Currency = lazy(() => import('./pages/Currency'));
 
 const App: React.FC = () => {
   const dispatch = useDispatch();
@@ -35,8 +37,15 @@ const App: React.FC = () => {
     }))
   };
 
+  const setCurrencyState = () => {
+    if (localStorage.getItem('currency')) {
+      dispatch(currencyActions.changeCurrency({ ...JSON.parse(localStorage.getItem('currency')!) }))
+    }
+  };
+
   useEffect(() => {
     setupLocalStorage();
+    setCurrencyState();
     setHistoryState();
     (async () => {
       const { data } = await axios.get('/api/v1/users/isLoggedIn', { withCredentials: true });
@@ -57,6 +66,7 @@ const App: React.FC = () => {
           <Route path='/wishlist' component={Wishlist} />
           <Route path='/cart' component={Cart} />
           <Route path='/history' component={History} />
+          <Route path='/currency' component={Currency} />
         </Suspense>
       </Switch>
     </React.Fragment>

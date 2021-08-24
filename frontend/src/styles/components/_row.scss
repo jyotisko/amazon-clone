@@ -107,6 +107,7 @@ $padding: 2rem;
 
     &__name {
       @include link(1.6rem);
+      font-weight: 400;
     }
 
     &__price {
