@@ -21,8 +21,22 @@ const historySlice = createSlice({
       state.captureHistory = action.payload.captureHistory;
     },
     addProductToHistory(state, action) {
-      if (state.products.filter((product) => product._id === action.payload.product._id).length > 0) return;
+      // Check if history is enabled.
       if (!state.captureHistory) return;
+
+      // If product already exists, update it.
+      const indexIfProductAlreadyExists = state.products.findIndex((product) => product._id === action.payload.product._id);
+      if (indexIfProductAlreadyExists >= 0) {
+        const updatedProducts = state.products.map((product, index) => {
+          if (index === indexIfProductAlreadyExists) return action.payload.product;
+          return product;
+        });
+        state.products = updatedProducts;
+        storeProductsInLocalStorage(updatedProducts);
+        return;
+      }
+
+      // If product doesn't exist, add it.
       const newProducts = ([action.payload.product, ...state.products]).slice(0, MAX_HISTORY_CAPACITY);
       storeProductsInLocalStorage(newProducts);
       state.products = newProducts;
@@ -36,6 +50,10 @@ const historySlice = createSlice({
       const currentState = state.captureHistory;
       localStorage.setItem('captureHistory', JSON.stringify(!currentState));
       state.captureHistory = !currentState;
+    },
+    removeAllProductsFromHistory(state) {
+      storeProductsInLocalStorage([]);
+      state.products = [];
     }
   }
 });

@@ -19,4 +19,11 @@
     display: flex;
     align-items: center;
   }
+
+  .section--history-items {
+    padding: 4rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 250px);
+    grid-auto-rows: 315px;
+  }
 }

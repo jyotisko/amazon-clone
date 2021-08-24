@@ -3,6 +3,7 @@
   color: $color-blue-light;
   text-decoration: none;
   display: inline-block;
+  cursor: pointer;
 
   &:hover {
     text-decoration: underline solid 1px $color-orange-medium;

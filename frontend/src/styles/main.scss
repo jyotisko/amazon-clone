@@ -21,13 +21,14 @@
 @import './components/pagination';
 @import './components/featureRow';
 @import './components/wishlist';
-@import './components/history';
+@import './components/historyItem';
 
 @import './layouts/nav';
 @import './layouts/footer';
 @import './layouts/authNav';
 @import './layouts/authFooter';
 @import './layouts/featuresHeader';
+@import './layouts/history';
 
 @import './pages/home';
 @import './pages/productDetail';

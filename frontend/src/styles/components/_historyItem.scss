@@ -1,0 +1,48 @@
+.history__item {
+  padding: 1rem 2rem;
+  position: relative;
+  border-right: 1px solid rgba($color-gray-light, 0.2);
+  border-left: 1px solid rgba($color-gray-light, 0.2);
+  overflow: hidden;
+
+  &__image {
+    display: block;
+    height: 15rem;
+    margin: 0 auto;
+    margin-bottom: 1rem;
+  }
+
+  &__name { 
+    font-weight: 400;
+    @include link(1.4rem);
+    margin-bottom: 0.6rem;
+  }
+
+  &__ratings {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0.4rem;
+
+    &__quantity {
+      margin-left: 0.6rem;
+      display: inline-block;
+      transform: translateY(-20%);
+      @include link(1.2rem);
+    }
+  }
+
+  &__price {
+    font-size: 1.4rem;
+    color: $color-red-medium;
+    font-weight: 400;
+    margin-bottom: 0.6rem;
+  }
+
+  &__button {
+    position: absolute;
+    bottom: 1rem;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 50%;
+  }
+}
