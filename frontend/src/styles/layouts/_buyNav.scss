@@ -1,0 +1,12 @@
+.nav--buy {
+  height: 10rem;
+  width: 100%;
+  background-color: $color-white-light;
+  display: flex;
+  align-items: center;
+  padding: 0 10vw;
+
+  &__image {
+    width: 20rem;
+  }
+}

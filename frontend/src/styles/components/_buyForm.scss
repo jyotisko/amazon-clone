@@ -1,0 +1,17 @@
+.form--buy {
+  width: 80rem;
+  border: none;
+
+  .form__group { margin-bottom: 1.8rem; }
+
+  .form__groups {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 2rem;
+  }
+
+  .form__button {
+    width: 22rem;
+    padding: 1rem;
+  }
+}

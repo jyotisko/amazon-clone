@@ -32,13 +32,15 @@ export const availableCurrencies = [
   }
 ];
 
+export const countries = ['USA', 'India', 'Russia', 'UAE', 'Nepal', 'China', 'Portugal', 'Spain'];
+
 export const getDate = (days: number): string => {
   const dateTimestamp = new Date(Date.now() + (days * 24 * 60 * 60 * 1000));
   const day = dateTimestamp.getDate();
   const weekDay = new Intl.DateTimeFormat('en-US', { weekday: 'long' }).format(dateTimestamp);
   const month = MONTHS[dateTimestamp.getMonth()];
   return `${weekDay}, ${month} ${day}`;
-}
+};
 
 export const formatNumber = (prefix: string, number: number) => {
   const formattedNumber = numeral(number.toFixed(2)).format('0,0');

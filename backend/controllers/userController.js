@@ -48,7 +48,7 @@ exports.getAllUsers = catchAsync(async (_req, res, _next) => {
 exports.updateMe = catchAsync(async (req, res, next) => {
   if (req.body.password || req.body.passwordConfirm) return next(new AppError('This route is not for password updates. Please use /updateMyPassword.', 400));
 
-  const filteredBody = filterObj(req.body, 'name', 'email', 'streetAddress', 'country', 'phone');
+  const filteredBody = filterObj(req.body, 'name', 'email', 'streetAddress', 'country', 'phone', 'city', 'country', 'state', 'zipcode');
 
   if (req.processedBuffer) {
     const filename = await uploadImageToCloudinary(req.processedBuffer, '/amazon/users/', `user-${req.user._id}-${Date.now()}`);

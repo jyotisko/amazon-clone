@@ -31,4 +31,15 @@ export interface cartStateType {
 export interface historyStateType {
   products: ProductResponseType[];
   captureHistory: boolean;
-}
+};
+
+export interface purchaseStateType {
+  products: {
+    name: string;
+    description: string;
+    imageMain: string;
+    priceOffer: number;
+    quantity: number;
+    productId: string;
+  }[] | null;
+};

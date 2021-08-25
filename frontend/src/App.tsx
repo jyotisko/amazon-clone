@@ -6,6 +6,7 @@ import { authActions } from './store/authSlice';
 import { historyActions } from './store/historySlice';
 import Spinner from './components/Utils/Spinner';
 import { currencyActions } from './store/currencySlice';
+import { purchaseActions } from './store/purchaseSlice';
 
 // Lazy loaded components
 const Home = lazy(() => import('./pages/Home'));
@@ -18,6 +19,7 @@ const Wishlist = lazy(() => import('./pages/Wishlist'));
 const Cart = lazy(() => import('./pages/Cart'));
 const History = lazy(() => import('./pages/History'));
 const Currency = lazy(() => import('./pages/Currency'));
+const Buy = lazy(() => import('./pages/Buy'));
 
 const App: React.FC = () => {
   const dispatch = useDispatch();
@@ -39,14 +41,20 @@ const App: React.FC = () => {
 
   const setCurrencyState = () => {
     if (localStorage.getItem('currency')) {
-      dispatch(currencyActions.changeCurrency({ ...JSON.parse(localStorage.getItem('currency')!) }))
+      dispatch(currencyActions.changeCurrency({ ...JSON.parse(localStorage.getItem('currency')!) }));
     }
+  };
+
+  const setPurchaseState = () => {
+    if (window.location.pathname.startsWith('/buy')) return;
+    dispatch(purchaseActions.resetPurchaseState());
   };
 
   useEffect(() => {
     setupLocalStorage();
     setCurrencyState();
     setHistoryState();
+    setPurchaseState();
     (async () => {
       const { data } = await axios.get('/api/v1/users/isLoggedIn', { withCredentials: true });
       if (data.data?.user) dispatch(authActions.login({ user: data.data.user }));
@@ -67,6 +75,7 @@ const App: React.FC = () => {
           <Route path='/cart' component={Cart} />
           <Route path='/history' component={History} />
           <Route path='/currency' component={Currency} />
+          <Route path='/buy' component={Buy} />
         </Suspense>
       </Switch>
     </React.Fragment>

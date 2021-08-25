@@ -38,6 +38,11 @@ export interface UserResponseType {
   name: string;
   phone: number;
   email: string;
+  streetAddress: string;
+  zipcode: number;
+  city: string;
+  country: string;
+  state: string;
 };
 
 export interface WishlistResponseType {

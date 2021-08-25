@@ -1,3 +1,4 @@
+import React from 'react';
 import { RootStateOrAny, useSelector } from 'react-redux';
 import { BsFillLockFill } from 'react-icons/bs';
 import { ProductResponseType } from '../../types/APIResponseTypes';
@@ -5,6 +6,7 @@ import { authStateType, currencyStateType } from '../../types/stateTypes';
 import { getDate } from '../../utils';
 import AddToListButton from './AddToListButton';
 import AddToCartButton from './AddToCartButton';
+import BuyButton from './BuyButton';
 
 export interface CartWishlistBuyProps {
   product: ProductResponseType;
@@ -24,7 +26,7 @@ const CartWishlistBuy: React.FC<CartWishlistBuyProps> = ({ product }) => {
       <h1 className={`product__cart-wishlist-buy__stock ${!product.isInStock && 'out-of-stock'}`}>{product.isInStock ? 'In stock' : 'Out of stock'}</h1>
       <div className="product__cart-wishlist-buy__options">
         <AddToCartButton product={product} user={user} />
-        <button className="btn btn--buy">Buy Now</button>
+        <BuyButton product={product} />
       </div>
       <div className="product__cart-wishlist-buy__transaction">
         <a href="#" className="product__cart-wishlist-buy__transaction__secure"><BsFillLockFill /> Secure transaction</a>

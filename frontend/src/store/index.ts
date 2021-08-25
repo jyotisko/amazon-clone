@@ -4,6 +4,7 @@ import currencySlice from './currencySlice';
 import searchSlice from './searchSlice';
 import cartSlice from './cartSlice';
 import historySlice from './historySlice';
+import purchaseSlice from './purchaseSlice';
 
 const store = configureStore({
   reducer: {
@@ -11,7 +12,8 @@ const store = configureStore({
     currency: currencySlice,
     search: searchSlice,
     cart: cartSlice,
-    history: historySlice
+    history: historySlice,
+    purchase: purchaseSlice
   }
 });
 

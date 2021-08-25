@@ -61,6 +61,17 @@ const userSchema = new mongoose.Schema({
     type: String,
     default: ''
   },
+  state: {
+    type: String,
+    default: ''
+  },
+  city: {
+    type: String,
+    default: ''
+  },
+  zipcode: {
+    type: Number,
+  },
   isActive: {
     type: Boolean,
     default: true,

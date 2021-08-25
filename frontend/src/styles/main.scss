@@ -22,6 +22,7 @@
 @import './components/featureRow';
 @import './components/wishlist';
 @import './components/historyItem';
+@import './components/buyForm';
 
 @import './layouts/nav';
 @import './layouts/footer';
@@ -29,6 +30,7 @@
 @import './layouts/authFooter';
 @import './layouts/featuresHeader';
 @import './layouts/history';
+@import './layouts/buyNav';
 
 @import './pages/home';
 @import './pages/productDetail';
@@ -38,3 +40,4 @@
 @import './pages/cart';
 @import './pages/history';
 @import './pages/currency';
+@import './pages/buy';
