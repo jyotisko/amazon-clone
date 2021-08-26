@@ -2,6 +2,7 @@ import { AiOutlineStar, AiFillStar } from 'react-icons/ai';
 import { RootStateOrAny, useSelector } from 'react-redux';
 import { ProductResponseType } from '../../types/APIResponseTypes';
 import { currencyStateType } from '../../types/stateTypes';
+import { formatNumber } from '../../utils';
 
 export interface NameAndSummaryProps {
   product: ProductResponseType
@@ -31,7 +32,9 @@ const NameAndSummary: React.FC<NameAndSummaryProps> = ({ product }) => {
         <div className="product-column-middle__price">
           <span className="product-column-middle__price-offer">
             <h5 className="product-column-middle__price-offer__text">Price: </h5>
-            <h2 className="product-column-middle__price-offer__value">{currency.symbol}{product.priceOffer * currency.multiplier}</h2>
+            <h2 className="product-column-middle__price-offer__value">
+              {formatNumber(currency.symbol, product.priceOffer * currency.multiplier)}
+            </h2>
           </span>
           <span className="product-column-middle__price-original">
             <h5 className="product-column-middle__price-original__value">{currency.symbol}{product.priceOriginal * currency.multiplier}</h5>
