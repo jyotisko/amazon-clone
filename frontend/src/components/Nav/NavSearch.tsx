@@ -42,8 +42,9 @@ const NavSearch: React.FC<NavProps> = ({ showSearchHistory = false }) => {
       <select ref={selectRef} defaultValue={showSearchHistory ? search.category || 'all' : 'all'} className="nav__caterogy-dropdown">
         <option value="all">All</option>
         <option value="electronics">Electronics</option>
-        <option value="toys">Toys</option>
-        <option value="computer-and-accessories">Computer And Accessories</option>
+        <option value="books">Books</option>
+        <option value="toy">toy</option>
+        <option value="computer-accessories">Computer And Accessories</option>
         <option value="mobiles">Mobiles</option>
       </select>
       <input type="text" value={inputQuery} onChange={(e) => setInputQuery(e.target.value)} />

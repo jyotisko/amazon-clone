@@ -20,6 +20,7 @@ const Cart = lazy(() => import('./pages/Cart'));
 const History = lazy(() => import('./pages/History'));
 const Currency = lazy(() => import('./pages/Currency'));
 const Buy = lazy(() => import('./pages/Buy'));
+const Page404 = lazy(() => import('./pages/404'));
 
 const App: React.FC = () => {
   const dispatch = useDispatch();
@@ -76,6 +77,7 @@ const App: React.FC = () => {
           <Route path='/history' component={History} />
           <Route path='/currency' component={Currency} />
           <Route path='/buy' component={Buy} />
+          <Route path='*' component={Page404} />
         </Suspense>
       </Switch>
     </React.Fragment>
