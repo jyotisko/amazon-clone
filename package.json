@@ -1,0 +1,24 @@
+{
+  "name": "amazon-clone",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "concurrently \"cd backend && npm run start:dev\" \"cd frontend && npm start\"",
+    "start": "concurrently \"cd backend && npm run start\" \"cd frontend && npm start\"",
+    "vercel-start": "concurrently \"cd backend && npm run start\" \"cd frontend && npm start\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jyotisko/amazon-clone.git"
+  },
+  "author": "Jyotisko Sengupta",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jyotisko/amazon-clone/issues"
+  },
+  "homepage": "https://github.com/jyotisko/amazon-clone#readme",
+  "devDependencies": {
+    "concurrently": "^6.2.1"
+  }
+}
