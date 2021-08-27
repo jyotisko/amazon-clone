@@ -19,17 +19,17 @@ const Featured: React.FC = () => {
         <div className="feature feature--1">
           <h1 className="feature__text">AmazonBasics</h1>
           <img src={amazonBasics} alt="Amazon Basics" className="feature__image" />
-          <a href="#" className="feature__link">See more</a>
+          <Link to="#" className="feature__link">See more</Link>
         </div>
         <div className="feature feature--2">
           <h1 className="feature__text">Find your ideal TV</h1>
           <img src={idealTV} alt="Find your ideal TV" className="feature__image" />
-          <a href="#" className="feature__link">See more</a>
+          <Link to="#" className="feature__link">See more</Link>
         </div>
         <div className="feature feature--3">
           <h1 className="feature__text">Gaming accessories</h1>
           <img src={gaming} alt="Gaming accessories" className="feature__image" />
-          <a href="#" className="feature__link">See more</a>
+          <Link to="/nodes/computer-accessories" className="feature__link">See more</Link>
         </div>
         <div className="feature feature--4 feature--prime">
           <div className="feature__signin">
@@ -45,22 +45,22 @@ const Featured: React.FC = () => {
         <div className="feature feature--5">
           <h1 className="feature__text">Oculus</h1>
           <img src={oculus} alt="Oculus" className="feature__image" />
-          <a href="#" className="feature__link">Shop now</a>
+          <Link to="#" className="feature__link">Shop now</Link>
         </div>
         <div className="feature feature--6">
           <h1 className="feature__text">Toys and games</h1>
           <img src={toysAndGames} alt="Toys and games" className="feature__image" />
-          <a href="#" className="feature__link">Shop now</a>
+          <Link to="/nodes/toys" className="feature__link">Shop now</Link>
         </div>
         <div className="feature feature--7">
           <h1 className="feature__text">Computer and accessories</h1>
           <img src={computerAndAccessories} alt="Computer And Accessories" className="feature__image" />
-          <a href="#" className="feature__link">Shop now</a>
+          <Link to="/nodes/computer-accessories" className="feature__link">Shop now</Link>
         </div>
         <div className="feature feature--8">
           <h1 className="feature__text">Appliances</h1>
           <img src={appliances} alt="Appliances" className="feature__image" />
-          <a href="#" className="feature__link">Shop now</a>
+          <Link to="/nodes/electronics" className="feature__link">Shop now</Link>
         </div>
       </div>
     </section>

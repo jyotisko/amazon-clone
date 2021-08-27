@@ -43,7 +43,7 @@ const NavSearch: React.FC<NavProps> = ({ showSearchHistory = false }) => {
         <option value="all">All</option>
         <option value="electronics">Electronics</option>
         <option value="books">Books</option>
-        <option value="toy">toy</option>
+        <option value="toys">Toys</option>
         <option value="computer-accessories">Computer And Accessories</option>
         <option value="mobiles">Mobiles</option>
       </select>

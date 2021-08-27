@@ -1,0 +1,14 @@
+.main--nodes {
+  min-height: 40vh;
+  padding: 6rem 6vw;
+  background-color: $color-white-light;
+
+  .nodes__products {
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-auto-rows: 420px;
+    grid-column-gap: 2rem;
+    grid-row-gap: 2rem;
+  }
+}

@@ -21,6 +21,7 @@ const History = lazy(() => import('./pages/History'));
 const Currency = lazy(() => import('./pages/Currency'));
 const Buy = lazy(() => import('./pages/Buy'));
 const Page404 = lazy(() => import('./pages/404'));
+const Nodes = lazy(() => import('./pages/Nodes'));
 
 const App: React.FC = () => {
   const dispatch = useDispatch();
@@ -64,22 +65,23 @@ const App: React.FC = () => {
 
   return (
     <React.Fragment>
-      <Switch>
-        <Suspense fallback={<Spinner />}>
+      <Suspense fallback={<Spinner />}>
+        <Switch>
           <Route path='/' exact component={Home} />
-          <Route path='/login' component={Login} />
+          <Route path='/login' exact component={Login} />
           <Route path='/signup' component={Signup} />
-          <Route path='/product/:id' component={ProductDetail} />
-          <Route path='/search' component={ProductSearch} />
-          <Route path='/features' component={Features} />
-          <Route path='/wishlist' component={Wishlist} />
-          <Route path='/cart' component={Cart} />
-          <Route path='/history' component={History} />
-          <Route path='/currency' component={Currency} />
-          <Route path='/buy' component={Buy} />
-          <Route path='*' component={Page404} />
-        </Suspense>
-      </Switch>
+          <Route path='/product/:id' exact component={ProductDetail} />
+          <Route path='/search' exact component={ProductSearch} />
+          <Route path='/features' exact component={Features} />
+          <Route path='/wishlist' exact component={Wishlist} />
+          <Route path='/cart' exact component={Cart} />
+          <Route path='/history' exact component={History} />
+          <Route path='/currency' exact component={Currency} />
+          <Route path='/buy' exact component={Buy} />
+          <Route path='/nodes/:node' component={Nodes} />
+          <Route component={Page404} />
+        </Switch>
+      </Suspense>
     </React.Fragment>
   );
 };

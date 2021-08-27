@@ -1,0 +1,47 @@
+.nodes {
+  &__product {
+    padding: 2rem;
+    border-bottom: 1px solid rgba($color-gray-light, 0.4);
+
+    &__image {
+      display: block;
+      height: 20rem;
+      margin-bottom: 1rem;
+    }
+
+    &__name {
+      @include link(1.6rem);
+      margin-bottom: 0.4rem;
+    }
+
+    &__ratings {
+      display: flex;
+      align-items: center;
+      margin-bottom: 2rem;
+
+      &-quantity { 
+        @include link(1.2rem);
+        margin-left: 0.6rem;
+        transform: translateY(-2px);
+      }
+    }
+
+    &__price {
+      display: flex;
+      align-items: center;
+
+      &--offer {
+        font-size: 1.8rem;
+        font-weight: 400;
+        margin-right: 0.6rem;
+      }
+      
+      &--original {
+        font-size: 1.4rem;
+        font-weight: 400;
+        text-decoration: line-through;
+        color: $color-gray-light;
+      }
+    }
+  }
+}
