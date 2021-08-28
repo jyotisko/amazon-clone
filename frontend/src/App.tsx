@@ -59,7 +59,7 @@ const App: React.FC = () => {
     setPurchaseState();
     (async () => {
       const { data } = await axios.post(`${process.env.REACT_APP_API_URL}/users/isLoggedIn`, {
-        withCredentials: true
+        withCredentials: true,
       });
       if (data.data?.user) dispatch(authActions.login({ user: data.data.user }));
     })();
