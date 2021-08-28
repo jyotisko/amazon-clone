@@ -8,6 +8,9 @@
     "start:dev": "nodemon server.js",
     "start:prod": "nodemon server.js"
   },
+  "engines": {
+    "node": ">10"
+  },
   "author": "Jyotisko Sengupta",
   "license": "ISC",
   "dependencies": {
