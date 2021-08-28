@@ -57,7 +57,6 @@ const App: React.FC = () => {
     setCurrencyState();
     setHistoryState();
     setPurchaseState();
-    console.log('Testings..');
     (async () => {
       const { data } = await axios.post(`${process.env.REACT_APP_API_URL}/users/isLoggedIn`, {
         withCredentials: true
