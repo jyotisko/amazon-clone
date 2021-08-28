@@ -57,8 +57,9 @@ const App: React.FC = () => {
     setCurrencyState();
     setHistoryState();
     setPurchaseState();
+    console.log('Testings..');
     (async () => {
-      const { data } = await axios.get(`${process.env.REACT_APP_API_URL}/users/isLoggedIn`, { withCredentials: true });
+      const { data } = await axios.get(`${process.env.REACT_APP_API_URL}/users/isLoggedIn`);
       if (data.data?.user) dispatch(authActions.login({ user: data.data.user }));
     })();
   }, []);
