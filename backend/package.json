@@ -4,9 +4,9 @@
   "description": "A fullstack amazon clone",
   "main": "index.js",
   "scripts": {
-    "start": "node server.js",
-    "start:dev": "nodemon server.js",
-    "start:prod": "nodemon server.js"
+    "start": "node index.js",
+    "start:dev": "nodemon index.js",
+    "start:prod": "nodemon index.js"
   },
   "author": "Jyotisko Sengupta",
   "license": "ISC",
