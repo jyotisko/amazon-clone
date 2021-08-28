@@ -15,7 +15,7 @@ const GridProduct: React.FC<GridProductProps> = ({ product, onItemRemove }) => {
 
   const removeItem = async (): Promise<void> => {
     setIsLoading(true);
-    await axios.delete(`/api/v1/wishlists/myWishlists/${product._id}`);
+    await axios.delete(`${process.env.REACT_APP_API_URL}/wishlists/myWishlists/${product._id}`);
     onItemRemove(product._id);
     setIsLoading(false);
   };

@@ -27,7 +27,7 @@ const ProductSearch: React.FC = () => {
   const getResults = async (query: string, category: string, page: number): Promise<PromiseReturnType> => {
     setIsLoading(true);
     try {
-      const { data } = await axios.get(`/api/v1/products?search=${query}&page=${page}&category=${category === 'all' ? '' : category}`);
+      const { data } = await axios.get(`${process.env.REACT_APP_API_URL}/products?search=${query}&page=${page}&category=${category === 'all' ? '' : category}`);
       const { totalPages, products } = data.data;
       return { totalPages, products };
     } catch (err) {

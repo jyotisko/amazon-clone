@@ -23,7 +23,7 @@ const Item: React.FC<ItemProps> = ({ item }) => {
 
   const deleteHandler = async () => {
     setIsLoadingDelete(true);
-    await axios.delete(`/api/v1/carts/myCarts/${item.product._id}`).catch(err => {
+    await axios.delete(`process.env.REACT_APP_API_URL/carts/myCarts/${item.product._id}`).catch(err => {
       throw new Error(err);
     });
     dispatch(cartActions.removeItemFromCart({ productId: item.product._id }));
@@ -35,7 +35,7 @@ const Item: React.FC<ItemProps> = ({ item }) => {
       if (e.target.value === 'delete') return await deleteHandler();
 
       setIsLoadingQuantity(true)
-      await axios.patch(`/api/v1/carts/myCarts/${item.product._id}`, { quantity: +e.target.value });
+      await axios.patch(`process.env.REACT_APP_API_URL/carts/myCarts/${item.product._id}`, { quantity: +e.target.value });
       dispatch(cartActions.changeItemQuantity({
         productId: item.product._id,
         quantity: +e.target.value

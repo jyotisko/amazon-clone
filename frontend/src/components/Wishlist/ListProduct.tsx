@@ -33,7 +33,7 @@ const ListProduct: React.FC<ListProductProps> = ({ product, onItemRemove }) => {
 
   const removeItem = async (productId: string): Promise<void> => {
     setIsLoading(true);
-    await axios.delete(`/api/v1/wishlists/myWishlists/${productId}`);
+    await axios.delete(`${process.env.REACT_APP_API_URL}/wishlists/myWishlists/${productId}`);
     setIsLoading(false);
     onItemRemove(productId);
   };

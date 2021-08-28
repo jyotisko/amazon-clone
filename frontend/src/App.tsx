@@ -58,7 +58,7 @@ const App: React.FC = () => {
     setHistoryState();
     setPurchaseState();
     (async () => {
-      const { data } = await axios.get('/api/v1/users/isLoggedIn', { withCredentials: true });
+      const { data } = await axios.get(`${process.env.REACT_APP_API_URL}/users/isLoggedIn`, { withCredentials: true });
       if (data.data?.user) dispatch(authActions.login({ user: data.data.user }));
     })();
   }, []);

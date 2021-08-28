@@ -28,7 +28,7 @@ const AddToCartButton: React.FC<AddToCartButtonProps> = ({ product, user }) => {
 
   const removeItemFromCart = async () => {
     try {
-      await axios.delete(`/api/v1/carts/myCarts/${product._id}`);
+      await axios.delete(`${process.env.REACT_APP_API_URL}/carts/myCarts/${product._id}`);
       setIsAddedToCart(false);
 
       dispatch(cartActions.removeItemFromCart({ productId: product._id }));
@@ -39,7 +39,7 @@ const AddToCartButton: React.FC<AddToCartButtonProps> = ({ product, user }) => {
 
   const addItemToCart = async () => {
     try {
-      await axios.post('/api/v1/carts', {
+      await axios.post('process.env.REACT_APP_API_URL/carts', {
         product: product._id,
         quantity: selectRef.current?.value || 1
       });

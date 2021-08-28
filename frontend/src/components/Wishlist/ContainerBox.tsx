@@ -13,7 +13,7 @@ const ContainerBox: React.FC = () => {
   const [view, setView] = useState<'grid' | 'list'>('list');
 
   const getProducts = async (): Promise<ProductResponseType[]> => {
-    const { data } = await axios.get('/api/v1/wishlists/myWishlists');
+    const { data } = await axios.get(`${process.env.REACT_APP_API_URL}/wishlists/myWishlists`);
     const products = data.data.wishlists.map((wishlist: WishlistResponseType) => wishlist.product);
     return products;
   };

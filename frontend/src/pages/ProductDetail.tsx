@@ -18,7 +18,7 @@ const ProductDetail: React.FC = () => {
   const [product, setProduct] = useState<ProductResponseType>();
 
   const getProduct = async (id: string) => {
-    const { data } = await axios.get(`/api/v1/products/${id}`);
+    const { data } = await axios.get(`${process.env.REACT_APP_API_URL}/products/${id}`);
     return data.data.product as ProductResponseType;
   };
 

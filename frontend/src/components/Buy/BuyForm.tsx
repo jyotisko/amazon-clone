@@ -28,7 +28,7 @@ const BuyForm: React.FC = () => {
 
   const updateAddress = async (): Promise<void> => {
     try {
-      await axios.patch('/api/v1/users/updateMe', {
+      await axios.patch(`${process.env.REACT_APP_API_URL}/users/updateMe`, {
         streetAddress: address,
         country: countryRef.current?.value,
         name: name,
@@ -44,7 +44,7 @@ const BuyForm: React.FC = () => {
   const managePayment = async (): Promise<void> => {
     try {
       // 1) Get a checkout session
-      const session = await axios.post('/api/v1/purchases/checkout-session', {
+      const session = await axios.post('process.env.REACT_APP_API_URL/purchases/checkout-session', {
         products: purchase.products
       });
 

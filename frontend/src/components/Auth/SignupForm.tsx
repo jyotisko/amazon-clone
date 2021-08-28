@@ -35,7 +35,7 @@ const SignupForm: React.FC = () => {
 
     setIsLoading(true);
     try {
-      const { data } = await axios.post('/api/v1/users/signup', {
+      const { data } = await axios.post(`${process.env.REACT_APP_API_URL}/users/signup`, {
         name: name,
         email: email,
         password: password,

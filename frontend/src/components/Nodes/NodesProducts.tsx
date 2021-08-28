@@ -15,7 +15,7 @@ const NodesProducts: React.FC<NodesProductsProps> = ({ node }) => {
   const getProducts = async () => {
     setIsLoading(true);
     try {
-      const { data } = await axios.get(`/api/v1/products?category=${node}&limit=100`);
+      const { data } = await axios.get(`${process.env.REACT_APP_API_URL}/products?category=${node}&limit=100`);
       setIsLoading(false);
       return data.data.products;
     } catch (err) {
