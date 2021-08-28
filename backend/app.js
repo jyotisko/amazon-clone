@@ -6,8 +6,6 @@ const cookieParser = require('cookie-parser');
 const expressMongoSanitize = require('express-mongo-sanitize');
 const helmet = require('helmet');
 
-app.use(cors());
-
 const globalErrorHandler = require('./controllers/errorController');
 const userRouter = require('./routes/userRoutes');
 const productRouter = require('./routes/productRoutes');
@@ -21,6 +19,7 @@ const AppError = require('./utils/AppError');
 const app = express();
 
 // MIDDLEWARES
+app.use(cors());
 app.use(helmet());
 app.use(cookieParser());
 if (process.env.NODE_ENV === 'development') app.use(morgan('dev'));
@@ -28,7 +27,7 @@ app.use(expressMongoSanitize());
 app.use(express.json());
 
 // ROUTES
-app.use('/api/v1/users', userRouter);
+app.use('/api/v1/users', cors(), userRouter);
 app.use('/api/v1/products', productRouter);
 app.use('/api/v1/reviews', reviewRouter);
 app.use('/api/v1/wishlists', wishlistRouter);
