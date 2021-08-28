@@ -14,7 +14,7 @@ const setCookie = (req, res, token) => {
   res.cookie('jwt', token, {
     expires: new Date(Date.now() + process.env.JWT_COOKIE_EXPIRES_IN * 24 * 60 * 60 * 1000),
     httpOnly: true,
-    secure: process.env.NODE_ENV === 'development' ? false : true
+    secure: false
   });
 };
 
