@@ -59,11 +59,8 @@ const App: React.FC = () => {
     setPurchaseState();
     console.log('Testings..');
     (async () => {
-      const { data } = await axios.get(`${process.env.REACT_APP_API_URL}/users/isLoggedIn`, {
-        withCredentials: true,
-        headers: {
-          'Access-Control-Allow-Origin': '*'
-        }
+      const { data } = await axios.post(`${process.env.REACT_APP_API_URL}/users/isLoggedIn`, {
+        withCredentials: true
       });
       if (data.data?.user) dispatch(authActions.login({ user: data.data.user }));
     })();
