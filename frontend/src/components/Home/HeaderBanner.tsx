@@ -11,7 +11,6 @@ const HeaderBanner: React.FC = () => {
 
   const fetchBanners = async (): Promise<BannerResponseType[]> => {
     const { data } = await axios.get(`${process.env.REACT_APP_API_URL}/banners`);
-    console.log(data)
     const banners = data.data.banners;
     return banners;
   };
