@@ -2,7 +2,7 @@
   "name": "amazon-clone",
   "version": "1.0.0",
   "description": "A fullstack amazon clone",
-  "main": "server.js",
+  "main": "index.js",
   "scripts": {
     "start": "node server.js",
     "start:dev": "nodemon server.js",
