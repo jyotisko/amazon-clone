@@ -2,7 +2,7 @@
   "name": "frontend",
   "version": "0.1.0",
   "private": true,
-  "proxy": "http://localhost:5000",
+  "proxy": "https://amazon-clone-api.vercel.app",
   "dependencies": {
     "@reduxjs/toolkit": "^1.6.1",
     "@stripe/stripe-js": "^1.17.1",
