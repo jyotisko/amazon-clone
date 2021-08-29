@@ -23,20 +23,15 @@ const app = express();
 // MIDDLEWARES
 app.use(cors());
 app.use(helmet());
+app.use(cookieParser());
 if (process.env.NODE_ENV === 'development') app.use(morgan('dev'));
 app.use(expressMongoSanitize());
 
 app.post('/webhook-checkout', bodyParser.raw({ type: 'application/json' }), purchaseController.webhookCheckout);
 
 app.use(express.json());
-app.use(cookieParser());
 
 // ROUTES
-app.use('*', (req, res, next) => {
-  console.log(req);
-  console.log(res);
-  next();
-});
 app.use('/api/v1/users', userRouter);
 app.use('/api/v1/products', productRouter);
 app.use('/api/v1/reviews', reviewRouter);
