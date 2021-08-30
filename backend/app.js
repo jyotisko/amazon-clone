@@ -30,7 +30,7 @@ const corsOptions = {
   }
 }
 
-app.use(cors());
+app.use(cors(corsOptions));
 app.use(helmet());
 app.use(cookieParser());
 if (process.env.NODE_ENV === 'development') app.use(morgan('dev'));
