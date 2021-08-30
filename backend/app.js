@@ -21,7 +21,7 @@ const AppError = require('./utils/AppError');
 const app = express();
 
 // MIDDLEWARES
-const whitelist = ['http://localhost:3000', 'https://amazon-clone-jyotisko.vercel.app/', 'https://amazon-clone-api.vercel.app/'];
+const whitelist = ['http://localhost:3000', 'https://amazon-clone-jyotisko.vercel.app', 'https://amazon-clone-api.vercel.app'];
 const corsOptions = {
   credentials: true,
   origin: function (origin, callback) {
