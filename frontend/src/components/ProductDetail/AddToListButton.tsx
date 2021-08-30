@@ -15,7 +15,7 @@ const AddToListButton: React.FC<AddToListButtonProps> = ({ productId, user }) =>
   const [isAddedToList, setIsAddedToList] = useState<boolean>(false);
 
   const checkIfProductIsAlreadyInTheList = async (): Promise<void> => {
-    const { data } = await axios.get(`process.env.REACT_APP_API_URL/wishlists/myWishLists?product=${productId}`, {
+    const { data } = await axios.get(`${process.env.REACT_APP_API_URL}/wishlists/myWishLists?product=${productId}`, {
       withCredentials: true
     });
     if (data.data.wishlists.length > 0) setIsAddedToList(true);
@@ -24,7 +24,9 @@ const AddToListButton: React.FC<AddToListButtonProps> = ({ productId, user }) =>
 
   const removeItemFromList = async () => {
     try {
-      await axios.delete(`${process.env.REACT_APP_API_URL}/wishlists/myWishlists/${productId}`);
+      await axios.delete(`${process.env.REACT_APP_API_URL}/wishlists/myWishlists/${productId}`, {
+        withCredentials: true
+      });
       setIsAddedToList(false);
     } catch (err) {
       throw new Error(err.response?.data?.message);
@@ -33,7 +35,11 @@ const AddToListButton: React.FC<AddToListButtonProps> = ({ productId, user }) =>
 
   const addItemToList = async () => {
     try {
-      await axios.post(`process.env.REACT_APP_API_URL/wishlists`, { product: productId });
+      await axios.post(`${process.env.REACT_APP_API_URL}/wishlists`, {
+        product: productId
+      }, {
+        withCredentials: true
+      });
       setIsAddedToList(true);
     } catch (err) {
       throw new Error(err.response?.data?.message);

@@ -28,7 +28,9 @@ const AddToCartButton: React.FC<AddToCartButtonProps> = ({ product, user }) => {
 
   const removeItemFromCart = async () => {
     try {
-      await axios.delete(`${process.env.REACT_APP_API_URL}/carts/myCarts/${product._id}`);
+      await axios.delete(`${process.env.REACT_APP_API_URL}/carts/myCarts/${product._id}`, {
+        withCredentials: true
+      });
       setIsAddedToCart(false);
 
       dispatch(cartActions.removeItemFromCart({ productId: product._id }));
