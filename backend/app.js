@@ -21,7 +21,7 @@ const AppError = require('./utils/AppError');
 const app = express();
 
 // MIDDLEWARES
-app.use(cors());
+app.use(cors({ credentials: true }));
 app.use(helmet());
 app.use(cookieParser());
 if (process.env.NODE_ENV === 'development') app.use(morgan('dev'));
