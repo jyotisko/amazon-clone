@@ -112,6 +112,7 @@ const notLoggedInResponse = (res) => {
 exports.isLoggedIn = async (req, res) => {
   try {
     let token;
+    console.log(req.cookies, req.headers.authorization);
     if (req.headers.authorization && req.headers.authorization.startsWith('Bearer')) {
       token = req.headers.authorization.split(' ')[1];
     } else if (req.cookies?.jwt) {
