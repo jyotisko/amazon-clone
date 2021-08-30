@@ -34,7 +34,6 @@ const LoginForm: React.FC = () => {
         withCredentials: true
       });
 
-      document.cookie = `jwt=${data.token}`;
       if (data.status === 'success') return history.replace('/?login=true');
 
     } catch (err) {
