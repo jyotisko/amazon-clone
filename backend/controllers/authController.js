@@ -62,7 +62,9 @@ exports.login = catchAsync(async (req, res, next) => {
 exports.logout = catchAsync(async (_req, res, _next) => {
   res.cookie('jwt', 'loggedout', {
     expires: new Date(Date.now() + 10 * 1000),
-    httpOnly: true
+    httpOnly: true,
+    secure: true,
+    sameSite: 'none'
   });
 
   res.status(200).json({ status: 'success' });
@@ -112,7 +114,6 @@ const notLoggedInResponse = (res) => {
 exports.isLoggedIn = async (req, res) => {
   try {
     let token;
-    console.log(req.cookies, req.headers.authorization);
     if (req.headers.authorization && req.headers.authorization.startsWith('Bearer')) {
       token = req.headers.authorization.split(' ')[1];
     } else if (req.cookies?.jwt) {

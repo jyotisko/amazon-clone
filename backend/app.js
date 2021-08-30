@@ -1,4 +1,3 @@
-const path = require('path');
 const express = require('express');
 const morgan = require('morgan');
 const cors = require('cors');
@@ -7,6 +6,7 @@ const expressMongoSanitize = require('express-mongo-sanitize');
 const helmet = require('helmet');
 const bodyParser = require('body-parser');
 
+const { corsOptions, corsHeadersMiddleware } = require('./utils/cors');
 const globalErrorHandler = require('./controllers/errorController');
 const userRouter = require('./routes/userRoutes');
 const productRouter = require('./routes/productRoutes');
@@ -21,15 +21,6 @@ const AppError = require('./utils/AppError');
 const app = express();
 
 // MIDDLEWARES
-const whitelist = ['http://localhost:3000', 'https://amazon-clone-jyotisko.vercel.app', 'https://amazon-clone-api.vercel.app'];
-const corsOptions = {
-  credentials: true,
-  origin: function (origin, callback) {
-    if (whitelist.indexOf(origin) !== -1) callback(null, true);
-    else callback(new Error('Not allowed by CORS'));
-  }
-}
-
 app.use(cors(corsOptions));
 app.use(helmet());
 app.use(cookieParser());
@@ -41,12 +32,7 @@ app.post('/webhook-checkout', bodyParser.raw({ type: 'application/json' }), purc
 app.use(express.json());
 
 // ROUTES
-app.use((req, res, next) => {
-  res.header('Access-Control-Allow-Credentials', true);
-  res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,UPDATE,OPTIONS');
-  res.header('Access-Control-Allow-Headers', 'X-Requested-With, X-HTTP-Method-Override, Content-Type, Accept');
-  next();
-});
+app.use(corsHeadersMiddleware);
 app.use('/api/v1/users', userRouter);
 app.use('/api/v1/products', productRouter);
 app.use('/api/v1/reviews', reviewRouter);

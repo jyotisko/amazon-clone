@@ -14,6 +14,7 @@ const NavCart: React.FC = () => {
 
   const getCartData = async () => {
     const { data } = await axios.get(`${process.env.REACT_APP_API_URL}/carts/myCarts`);
+    console.log(data)
     const items = data.data.cartItems.map((item: CartResponseType) => {
       return {
         quantity: item.quantity,

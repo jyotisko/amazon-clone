@@ -12,7 +12,7 @@ const Home: React.FC = () => {
   useEffect(() => {
     dispatch(searchActions.resetSearch());
     const urlParams = new URLSearchParams(window.location.search);
-    // if (Boolean(urlParams.get('login'))) window.location.assign('/');
+    if (Boolean(urlParams.get('login'))) window.location.assign('/');
   }, []);
 
   return (

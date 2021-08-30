@@ -12,7 +12,9 @@ interface DropdownMenuProps {
 const DropdownMenu: React.FC<DropdownMenuProps> = (props) => {
   const handleLogout = async () => {
     try {
-      const { data } = await axios.get(`${process.env.REACT_APP_API_URL}/users/logout`);
+      const { data } = await axios.get(`${process.env.REACT_APP_API_URL}/users/logout`, {
+        withCredentials: true
+      });
       if (data.status === 'success') window.location.reload();
     } catch (err) {
       console.log(err?.reponse?.data?.message);

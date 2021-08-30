@@ -1,12 +1,13 @@
 import React, { useEffect, lazy, Suspense } from 'react';
 import { Switch, Route } from 'react-router-dom';
 import axios from 'axios';
-import { useDispatch } from 'react-redux';
+import { RootStateOrAny, useDispatch, useSelector } from 'react-redux';
 import { authActions } from './store/authSlice';
 import { historyActions } from './store/historySlice';
 import Spinner from './components/Utils/Spinner';
 import { currencyActions } from './store/currencySlice';
 import { purchaseActions } from './store/purchaseSlice';
+import { authStateType } from './types/stateTypes';
 
 // Lazy loaded components
 const Home = lazy(() => import('./pages/Home'));
@@ -25,6 +26,7 @@ const Nodes = lazy(() => import('./pages/Nodes'));
 
 const App: React.FC = () => {
   const dispatch = useDispatch();
+  const auth: authStateType = useSelector((state: RootStateOrAny) => state.auth);
 
   // Setup history for first time visitors
   const setupLocalStorage = () => {
@@ -58,6 +60,7 @@ const App: React.FC = () => {
     setHistoryState();
     setPurchaseState();
     (async () => {
+      if (auth.isLoggedIn || auth.user) return;
       const { data } = await axios.post(`${process.env.REACT_APP_API_URL}/users/isLoggedIn`, {}, {
         withCredentials: true
       });
