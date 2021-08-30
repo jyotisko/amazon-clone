@@ -36,6 +36,8 @@ const BuyForm: React.FC = () => {
         city: city,
         state: state,
         zipcode: zipcode
+      }, {
+        withCredentials: true
       });
 
     } catch (err) { throw err; }
@@ -44,7 +46,7 @@ const BuyForm: React.FC = () => {
   const managePayment = async (): Promise<void> => {
     try {
       // 1) Get a checkout session
-      const session = await axios.post('process.env.REACT_APP_API_URL/purchases/checkout-session', {
+      const session = await axios.post(`${process.env.REACT_APP_API_URL}/purchases/checkout-session`, {
         products: purchase.products
       }, {
         withCredentials: true
