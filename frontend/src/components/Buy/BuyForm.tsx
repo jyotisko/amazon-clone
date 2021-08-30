@@ -46,6 +46,8 @@ const BuyForm: React.FC = () => {
       // 1) Get a checkout session
       const session = await axios.post('process.env.REACT_APP_API_URL/purchases/checkout-session', {
         products: purchase.products
+      }, {
+        withCredentials: true
       });
 
       dispatch(purchaseActions.resetPurchaseState());

@@ -35,7 +35,11 @@ const Item: React.FC<ItemProps> = ({ item }) => {
       if (e.target.value === 'delete') return await deleteHandler();
 
       setIsLoadingQuantity(true)
-      await axios.patch(`process.env.REACT_APP_API_URL/carts/myCarts/${item.product._id}`, { quantity: +e.target.value });
+      await axios.patch(`${process.env.REACT_APP_API_URL}/carts/myCarts/${item.product._id}`, {
+        quantity: +e.target.value
+      }, {
+        withCredentials: true
+      });
       dispatch(cartActions.changeItemQuantity({
         productId: item.product._id,
         quantity: +e.target.value

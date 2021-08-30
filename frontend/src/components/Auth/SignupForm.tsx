@@ -40,6 +40,8 @@ const SignupForm: React.FC = () => {
         email: email,
         password: password,
         passwordConfirm: passwordConfirm
+      }, {
+        withCredentials: true
       });
 
       if (data.status === 'success') return history.replace('/?login=true');

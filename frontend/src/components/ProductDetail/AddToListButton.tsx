@@ -15,7 +15,9 @@ const AddToListButton: React.FC<AddToListButtonProps> = ({ productId, user }) =>
   const [isAddedToList, setIsAddedToList] = useState<boolean>(false);
 
   const checkIfProductIsAlreadyInTheList = async (): Promise<void> => {
-    const { data } = await axios.get(`process.env.REACT_APP_API_URL/wishlists/myWishLists?product=${productId}`);
+    const { data } = await axios.get(`process.env.REACT_APP_API_URL/wishlists/myWishLists?product=${productId}`, {
+      withCredentials: true
+    });
     if (data.data.wishlists.length > 0) setIsAddedToList(true);
     setIsLoading(false);
   };

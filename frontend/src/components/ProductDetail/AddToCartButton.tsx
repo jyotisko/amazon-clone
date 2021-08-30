@@ -42,6 +42,8 @@ const AddToCartButton: React.FC<AddToCartButtonProps> = ({ product, user }) => {
       await axios.post('process.env.REACT_APP_API_URL/carts', {
         product: product._id,
         quantity: selectRef.current?.value || 1
+      }, {
+        withCredentials: true
       });
 
       setIsAddedToCart(true);

@@ -13,8 +13,9 @@ const NavCart: React.FC = () => {
   const auth: authStateType = useSelector((state: RootStateOrAny) => state.auth);
 
   const getCartData = async () => {
-    const { data } = await axios.get(`${process.env.REACT_APP_API_URL}/carts/myCarts`);
-    console.log(data)
+    const { data } = await axios.get(`${process.env.REACT_APP_API_URL}/carts/myCarts`, {
+      withCredentials: true
+    });
     const items = data.data.cartItems.map((item: CartResponseType) => {
       return {
         quantity: item.quantity,
