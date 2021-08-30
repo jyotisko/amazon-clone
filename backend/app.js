@@ -21,7 +21,16 @@ const AppError = require('./utils/AppError');
 const app = express();
 
 // MIDDLEWARES
-app.use(cors({ credentials: true }));
+const whitelist = ['http://localhost:3000', 'http://localhost:5000', 'https://amazon-clone-jyotisko.vercel.app', 'https://amazon-clone-api.vercel.app'];
+const corsOptions = {
+  credentials: true,
+  origin: function (origin, callback) {
+    if (whitelist.indexOf(origin) !== -1) callback(null, true);
+    else callback(new Error('Not allowed by CORS'));
+  }
+}
+
+app.use(cors());
 app.use(helmet());
 app.use(cookieParser());
 if (process.env.NODE_ENV === 'development') app.use(morgan('dev'));
