@@ -25,10 +25,12 @@ const LoginForm: React.FC = () => {
 
     setLoading(true);
     try {
-      const { data } = await axios.post(`${process.env.REACT_APP_API_URL}/users/login`, {
-        email: emailRef.current!.value,
-        password: passwordRef.current!.value
-      }, {
+      const { data } = await axios(`${process.env.REACT_APP_API_URL}/users/login`, {
+        method: 'POST',
+        data: {
+          email: emailRef.current!.value,
+          password: passwordRef.current!.value
+        },
         withCredentials: true
       });
 
