@@ -25,12 +25,26 @@ const LoginForm: React.FC = () => {
 
     setLoading(true);
     try {
-      const { data } = await axios.post(`${process.env.REACT_APP_API_URL}/users/login`, {
-        email: emailRef.current!.value,
-        password: passwordRef.current!.value
-      }, {
-        withCredentials: true
+      // const { data } = await axios.post(`${process.env.REACT_APP_API_URL}/users/login`, {
+      //   email: emailRef.current!.value,
+      //   password: passwordRef.current!.value
+      // }, {
+      //   withCredentials: true
+      // });
+      const res = await fetch(`${process.env.REACT_APP_API_URL}/users/login`, {
+        method: 'POST',
+        body: JSON.stringify({
+          email: emailRef.current!.value,
+          password: passwordRef.current!.value
+        }),
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        credentials: 'include'
       });
+
+      const data = await res.json();
+      console.log(data)
 
       if (data.status === 'success') return history.replace('/?login=true');
 
