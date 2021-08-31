@@ -38,7 +38,7 @@ const processCheckoutPurchases = async (session) => {
     session.id,
     { expand: ['line_items'] }
   );
-  console.log(line_items);
+  console.log(line_items, session.client_reference_id);
 };
 
 exports.webhookCheckout = async (req, res) => {
