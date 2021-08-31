@@ -36,7 +36,7 @@ exports.getCheckoutSession = catchAsync(async (req, res, next) => {
 const processCheckoutPurchases = async (session) => {
   console.log('Webhook checkout!');
   const { line_items } = await stripe.checkout.sessions.retrieve(session.id, { expand: ['line_items'] });
-  const user = User.findOne({ email: session.customer_email });
+  const user = await User.findOne({ email: session.customer_email });
   const productIds = session.client_reference_id.split('&');
 
   await Promise.all(
