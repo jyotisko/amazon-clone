@@ -21,8 +21,8 @@ exports.getCheckoutSession = catchAsync(async (req, res, next) => {
     payment_method_types: ['card'],
     customer_email: req.user.email,
     client_reference_id: (req.body.products.map((product) => product.productId)).join('&'),
-    success_url: 'http://127.0.0.1:3000',
-    cancel_url: 'http://127.0.0.1:3000',
+    success_url: '/',
+    cancel_url: '/',
   });
 
   res.status(200).json({
@@ -32,6 +32,7 @@ exports.getCheckoutSession = catchAsync(async (req, res, next) => {
 });
 
 const processCheckoutPurchases = async (session) => {
+  console.log('Webhook checkout!')
   console.log(session);
 };
 
