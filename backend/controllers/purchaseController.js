@@ -41,7 +41,7 @@ const processCheckoutPurchases = async (session) => {
 
   await Promise.all(
     line_items.data.map((product, index) => {
-      return await Purchase.create({
+      return Purchase.create({
         product: productIds[index],
         user: user._id,
         quantity: product.quantity,
