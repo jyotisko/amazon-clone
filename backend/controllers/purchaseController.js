@@ -1,6 +1,7 @@
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 const Purchase = require('../models/purchaseModel');
 const Product = require('../models/productModel');
+const User = require('../models/userModel');
 const catchAsync = require('../utils/catchAsync');
 const AppError = require('../utils/AppError');
 
@@ -34,11 +35,20 @@ exports.getCheckoutSession = catchAsync(async (req, res, next) => {
 
 const processCheckoutPurchases = async (session) => {
   console.log('Webhook checkout!');
-  const { line_items } = await stripe.checkout.sessions.retrieve(
-    session.id,
-    { expand: ['line_items'] }
+  const { line_items } = await stripe.checkout.sessions.retrieve(session.id, { expand: ['line_items'] });
+  const user = User.findOne({ email: session.customer_email });
+  const productIds = session.client_reference_id.split('&');
+
+  await Promise.all(
+    line_items.data.map((product, index) => {
+      return await Purchase.create({
+        product: productIds[index],
+        user: user._id,
+        quantity: product.quantity,
+        totalPrice: product.amount_total / 100
+      });
+    })
   );
-  console.log(line_items, session.client_reference_id);
 };
 
 exports.webhookCheckout = async (req, res) => {
