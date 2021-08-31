@@ -23,7 +23,9 @@ const Item: React.FC<ItemProps> = ({ item }) => {
 
   const deleteHandler = async () => {
     setIsLoadingDelete(true);
-    await axios.delete(`process.env.REACT_APP_API_URL/carts/myCarts/${item.product._id}`).catch(err => {
+    await axios.delete(`${process.env.REACT_APP_API_URL}/carts/myCarts/${item.product._id}`, {
+      withCredentials: true
+    }).catch(err => {
       throw new Error(err);
     });
     dispatch(cartActions.removeItemFromCart({ productId: item.product._id }));

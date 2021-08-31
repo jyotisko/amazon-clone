@@ -18,8 +18,9 @@ exports.getCheckoutSession = catchAsync(async (req, res, next) => {
 
   const url = process.env.NODE_ENV === 'production' ? 'https://amazon-clone-jyotisko.vercel.app' : 'http://localhost:3000';
   const session = await stripe.checkout.sessions.create({
-    line_items: items,
     payment_method_types: ['card'],
+    metadata: items,
+    line_items: items,
     customer_email: req.user.email,
     client_reference_id: (req.body.products.map((product) => product.productId)).join('&'),
     success_url: url,
@@ -37,7 +38,7 @@ const processCheckoutPurchases = async (session) => {
   console.log(session);
 };
 
-exports.webhookCheckout = async (req, res, next) => {
+exports.webhookCheckout = async (req, res) => {
   const signature = req.headers['stripe-signature'];
 
   let event;
