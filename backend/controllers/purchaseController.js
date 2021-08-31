@@ -12,7 +12,8 @@ exports.getCheckoutSession = catchAsync(async (req, res, next) => {
       images: [product.imageMain],
       amount: product.priceOffer * 100,
       currency: 'usd',
-      quantity: product.quantity
+      quantity: product.quantity,
+      id: product.productId
     }
   });
 
