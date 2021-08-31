@@ -20,7 +20,7 @@ exports.getCheckoutSession = catchAsync(async (req, res, next) => {
   const session = await stripe.checkout.sessions.create({
     payment_method_types: ['card'],
     metadata: {
-      products: items
+      products: JSON.stringify(items)           // Stripe accepts a string, not an object
     },
     line_items: items,
     customer_email: req.user.email,
