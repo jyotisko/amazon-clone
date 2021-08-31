@@ -48,7 +48,7 @@ exports.webhookCheckout = async (req, res, next) => {
   }
 
   if (event.type === 'checkout.session.completed') {
-    processCheckoutPurchases(event.data.object);
+    await processCheckoutPurchases(event.data.object);
   }
 
   res.status(200).json({ received: true });
