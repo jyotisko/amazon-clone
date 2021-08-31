@@ -13,7 +13,6 @@ exports.getCheckoutSession = catchAsync(async (req, res, next) => {
       amount: product.priceOffer * 100,
       currency: 'usd',
       quantity: product.quantity,
-      id: product.productId
     }
   });
 
