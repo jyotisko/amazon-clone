@@ -1,0 +1,44 @@
+.orders__item {
+  width: 100%;
+  padding: 3rem;
+  display: grid;
+  grid-template-columns: 25% 75%;
+  grid-auto-rows: 28rem;
+  grid-row-gap: 1rem;
+  grid-column-gap: 2rem;
+
+  &__image__container {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+  }
+  
+  &__image {
+    width: 100%;
+    height: 100%;
+  }
+
+  &__name {
+    @include link(1.6rem);
+    margin-bottom: 1rem;
+  }
+
+  &__price-text {
+    font-size: 1.4rem;
+    font-weight: 400;
+  }
+
+  &__price {
+    font-size: 1.5rem;
+    color: $color-red-medium;
+    font-weight: 500;
+    margin-bottom: 0.6rem;
+    margin-left: 0.6rem;
+  }
+
+  &__quantity {
+    font-size: 1.4rem;
+    font-weight: 400;
+    margin-bottom: 1rem;
+  }
+}

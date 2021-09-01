@@ -59,3 +59,11 @@ export interface CartResponseType {
   user: UserResponseType;
   createdAt: Date;
 };
+
+export interface PurchasesResponseType {
+  product: ProductResponseType;
+  user: string;
+  quantity: number;
+  totalPrice: number;
+  createdAt: Date;
+};

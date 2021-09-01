@@ -8,7 +8,7 @@ router.post('/signup', authController.signup);
 router.post('/login', authController.login);
 
 router.get('/logout', authController.logout);
-router.post('/isLoggedIn', authController.isLoggedIn);
+router.get('/isLoggedIn', authController.isLoggedIn);
 
 router.use(authController.protect);
 router.patch('/updateMe', userController.uploadUserPhoto, userController.processUserPhoto, userController.updateMe);

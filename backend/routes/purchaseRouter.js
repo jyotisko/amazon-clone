@@ -4,6 +4,8 @@ const purchaseController = require('../controllers/purchaseController');
 
 const router = express.Router();
 
-router.post('/checkout-session', authController.protect, purchaseController.getCheckoutSession);
+router.use(authController.protect);
+router.post('/checkout-session', purchaseController.getCheckoutSession);
+router.get('/myPurchases', purchaseController.getMyPurchases);
 
 module.exports = router;

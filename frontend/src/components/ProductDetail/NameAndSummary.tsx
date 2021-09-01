@@ -1,8 +1,8 @@
-import { AiOutlineStar, AiFillStar } from 'react-icons/ai';
 import { RootStateOrAny, useSelector } from 'react-redux';
 import { ProductResponseType } from '../../types/APIResponseTypes';
 import { currencyStateType } from '../../types/stateTypes';
 import { formatNumber } from '../../utils';
+import Ratings from '../Utils/Ratings';
 
 export interface NameAndSummaryProps {
   product: ProductResponseType
@@ -17,15 +17,7 @@ const NameAndSummary: React.FC<NameAndSummaryProps> = ({ product }) => {
       <div className="product-column-middle__row-1">
         <h1 className="product-column-middle__name">{product.name}</h1>
         <a href={`http://${product.sellerLink}`} className="product-column-middle__manufacturer-store">{product.sellerUser.name} Store</a>
-        <div className="product-column-middle__ratings">
-          {
-            [1, 2, 3, 4, 5].map((rating, index) => {
-              if (product.ratingsAverage >= rating) return <i key={index} className="icon icon--star icon--star--fill"><AiFillStar /></i>;
-              else return <i key={index} className="icon icon--star icon--star--outline"><AiOutlineStar /></i>;
-            })
-          }
-          <a href="#" className="product-column-middle__ratings-quantity">{product.ratingsQuantity} ratings</a>
-        </div>
+        <Ratings ratingsAverage={product.ratingsAverage} ratingsQuantity={product.ratingsQuantity} />
       </div>
       {/* The price and summary */}
       <div className="product-column-middle__row-2">
@@ -37,7 +29,9 @@ const NameAndSummary: React.FC<NameAndSummaryProps> = ({ product }) => {
             </h2>
           </span>
           <span className="product-column-middle__price-original">
-            <h5 className="product-column-middle__price-original__value">{currency.symbol}{product.priceOriginal * currency.multiplier}</h5>
+            <h5 className="product-column-middle__price-original__value">
+              {currency.symbol}{product.priceOriginal * currency.multiplier}
+            </h5>
             <h5 className="product-column-middle__price-original__percentage">(You save {product.savingsPercentage}%)</h5>
           </span>
         </div>

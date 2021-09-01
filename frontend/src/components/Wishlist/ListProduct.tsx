@@ -7,6 +7,7 @@ import Spinner from '../Utils/Spinner';
 import { currencyStateType } from '../../types/stateTypes';
 import { ProductResponseType } from '../../types/APIResponseTypes';
 import { MONTHS } from '../../utils';
+import Ratings from '../Utils/Ratings';
 
 export interface ListProductProps {
   product: ProductResponseType;
@@ -43,15 +44,7 @@ const ListProduct: React.FC<ListProductProps> = ({ product, onItemRemove }) => {
       <img loading='lazy' className="wishlist__list__product__image" src={product.imageMain} alt={product.name.slice(50)} />
       <div className="wishlist__list__product__text">
         <Link to={`/product/${product._id}`} className="wishlist__list__product__name">{product.name}</Link>
-        <div className="wishlist__list__product__ratings">
-          {
-            [1, 2, 3, 4, 5].map((rating, index) => {
-              if (product.ratingsAverage >= rating) return <i key={index} className="icon icon--star icon--star--fill"><AiFillStar /></i>;
-              else return <i key={index} className="icon icon--star icon--star--outline"><AiOutlineStar /></i>;
-            })
-          }
-          <h5 className="wishlist__list__product__ratings-quantity">{product.ratingsQuantity}</h5>
-        </div>
+        <Ratings ratingsAverage={product.ratingsAverage} ratingsQuantity={product.ratingsQuantity} />
         <h4 className="wishlist__list__product__price">
           <span className="wishlist__list__product__currency">{currency.symbol}</span>{product.priceOffer * currency.multiplier}
         </h4>

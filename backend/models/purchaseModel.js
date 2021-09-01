@@ -25,6 +25,11 @@ const purchaseSchema = new mongoose.Schema({
   }
 });
 
+purchaseSchema.pre(/^find/, function (next) {
+  this.populate('product');
+  next();
+});
+
 const Purchase = mongoose.model('Purchase', purchaseSchema);
 
 module.exports = Purchase;

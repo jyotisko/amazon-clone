@@ -23,6 +23,7 @@ const Currency = lazy(() => import('./pages/Currency'));
 const Buy = lazy(() => import('./pages/Buy'));
 const Page404 = lazy(() => import('./pages/404'));
 const Nodes = lazy(() => import('./pages/Nodes'));
+const Orders = lazy(() => import('./pages/Orders'));
 
 const App: React.FC = () => {
   const dispatch = useDispatch();
@@ -61,7 +62,7 @@ const App: React.FC = () => {
     setPurchaseState();
     (async () => {
       if (auth.isLoggedIn || auth.user) return;
-      const { data } = await axios.post(`${process.env.REACT_APP_API_URL}/users/isLoggedIn`, {}, {
+      const { data } = await axios.get(`${process.env.REACT_APP_API_URL}/users/isLoggedIn`, {
         withCredentials: true
       });
       if (data.data?.user) dispatch(authActions.login({ user: data.data.user }));
@@ -83,7 +84,8 @@ const App: React.FC = () => {
           <Route path='/history' exact component={History} />
           <Route path='/currency' exact component={Currency} />
           <Route path='/buy' exact component={Buy} />
-          <Route path='/nodes/:node' component={Nodes} />
+          <Route path='/nodes/:node' exact component={Nodes} />
+          <Route path='/orders' exact component={Orders} />
           <Route component={Page404} />
         </Switch>
       </Suspense>

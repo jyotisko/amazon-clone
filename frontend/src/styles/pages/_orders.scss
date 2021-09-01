@@ -1,0 +1,19 @@
+.main--orders {
+  min-height: 40vh;
+  padding: 2rem;
+  display: flex;
+  justify-content: center;
+  
+  .orders {
+    position: relative;
+    height: auto;
+    width: 100rem;
+    background-color: $color-white-light;
+    padding: 1.8rem 2rem;
+
+    &__text {
+      font-size: 2.8rem;
+      font-weight: 500;
+    }
+  }
+}

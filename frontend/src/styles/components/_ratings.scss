@@ -1,0 +1,12 @@
+.ratings {
+  display: flex;
+  align-items: center;
+
+  &__icon:nth-child(5) { margin-right: 1rem; }
+
+  &__quantity {
+    display: block;
+    @include link(1.4rem);
+    transform: translateY(-2px);
+  }
+}
