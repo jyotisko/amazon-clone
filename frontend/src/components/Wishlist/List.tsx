@@ -1,16 +1,26 @@
 import React from 'react';
-import { ProductResponseType } from '../../types/APIResponseTypes';
+import { WishlistResponseType } from '../../types/APIResponseTypes';
 import ListProduct from './ListProduct';
 
 interface ListProps {
-  products: ProductResponseType[];
+  wishlists: WishlistResponseType[];
   onItemRemove: (id: string) => void;
 };
 
-const List: React.FC<ListProps> = ({ products, onItemRemove }) => {
+const List: React.FC<ListProps> = ({ wishlists, onItemRemove }) => {
   return (
     <div className="wishlist__list">
-      {products.map((product) => <ListProduct product={product} key={product._id} onItemRemove={onItemRemove} />)}
+      {
+        wishlists.map((item) => {
+          return <ListProduct
+            key={item._id}
+            wishlistId={item._id}
+            product={item.product}
+            onItemRemove={onItemRemove}
+            createdAt={item.createdAt}
+          />
+        })
+      }
     </div>
   );
 };

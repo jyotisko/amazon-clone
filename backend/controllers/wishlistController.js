@@ -41,7 +41,7 @@ exports.getMyWishlists = catchAsync(async (req, res, _next) => {
 });
 
 exports.deleteMyWishlist = catchAsync(async (req, res, _next) => {
-  await Wishlist.findOneAndDelete({ product: req.params.productId, user: req.user._id });
+  await Wishlist.findOneAndDelete({ _id: req.params.id, user: req.user._id });
 
   res.status(204).json({
     status: 'success',

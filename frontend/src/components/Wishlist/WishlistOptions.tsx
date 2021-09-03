@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { BsFillGrid3X3GapFill } from 'react-icons/bs';
 import { HiViewList } from 'react-icons/hi';
 import { BiSearch } from 'react-icons/bi';

@@ -11,25 +11,26 @@ import Banners from '../components/ProductDetail/Banners';
 import Description from '../components/ProductDetail/Description';
 import Information from '../components/ProductDetail/Information';
 import Footer from '../components/Footer/Footer';
+import useAxios from '../hooks/useAxios';
 
 const ProductDetail: React.FC = () => {
   const dispatch = useDispatch();
   const { id } = useParams();
   const [product, setProduct] = useState<ProductResponseType>();
-
-  const getProduct = async (id: string) => {
-    const { data } = await axios.get(`${process.env.REACT_APP_API_URL}/products/${id}`);
-    return data.data.product as ProductResponseType;
-  };
+  const { data, error } = useAxios(`${process.env.REACT_APP_API_URL}/products/${id}`, 'GET');
 
   useEffect(() => {
-    getProduct(id).then((product) => {
+    if (data) {
       dispatch(historyActions.addProductToHistory({
-        product: product
-      }))
-      return setProduct(product)
-    });
-  }, []);
+        //@ts-ignore
+        product: data.data.product
+      }));
+      //@ts-ignore
+      return setProduct(data.data.product)
+    }
+    //@ts-ignore
+    if (error) alert(error?.response?.data?.message || 'Something went wrong');
+  }, [data, error]);
 
   return (
     <React.Fragment>

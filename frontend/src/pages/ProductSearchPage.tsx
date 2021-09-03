@@ -38,7 +38,6 @@ const ProductSearch: React.FC = () => {
   };
 
   useEffect(() => {
-    console.log('Location changed')
     const urlParams = new URLSearchParams(window.location.search);
     const query = urlParams.get('query') || search.query || '';
     const category = urlParams.get('category') || search.category || 'all';

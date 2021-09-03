@@ -7,18 +7,19 @@ import Spinner from '../Utils/Spinner';
 export interface GridProductProps {
   product: ProductResponseType;
   onItemRemove: (productId: string) => void;
+  wishlistId: string;
 };
 
-const GridProduct: React.FC<GridProductProps> = ({ product, onItemRemove }) => {
+const GridProduct: React.FC<GridProductProps> = ({ product, onItemRemove, wishlistId }) => {
   const [showControls, setShowControls] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const removeItem = async (): Promise<void> => {
     setIsLoading(true);
-    await axios.delete(`${process.env.REACT_APP_API_URL}/wishlists/myWishlists/${product._id}`, {
+    await axios.delete(`${process.env.REACT_APP_API_URL}/wishlists/myWishlists/${wishlistId}`, {
       withCredentials: true
     });
-    onItemRemove(product._id);
+    onItemRemove(wishlistId);
     setIsLoading(false);
   };
 

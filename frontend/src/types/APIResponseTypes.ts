@@ -35,6 +35,7 @@ export interface BannerResponseType {
 };
 
 export interface UserResponseType {
+  _id: string;
   name: string;
   phone: number;
   email: string;

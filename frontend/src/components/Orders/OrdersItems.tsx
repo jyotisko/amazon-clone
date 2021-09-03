@@ -3,30 +3,18 @@ import axios from 'axios';
 import { PurchasesResponseType } from '../../types/APIResponseTypes';
 import Spinner from '../../components/Utils/Spinner';
 import OrdersItem from './OrdersItem';
+import useAxios from '../../hooks/useAxios';
 
 const OrdersItems: React.FC = () => {
   const [purchases, setPurchases] = useState<PurchasesResponseType[]>([]);
-  const [isLoading, setIsLoading] = useState<boolean>(false);
-
-  const getPurchases = async () => {
-    setIsLoading(true)
-    try {
-      const { data } = await axios.get(`${process.env.REACT_APP_API_URL}/purchases/myPurchases`, {
-        withCredentials: true
-      });
-      return data.data.purchases;
-    } catch (err) {
-      throw err;
-    } finally {
-      setIsLoading(false);
-    }
-  };
+  const { data, isLoading, error } = useAxios(`${process.env.REACT_APP_API_URL}/purchases/myPurchases`, 'GET');
 
   useEffect(() => {
-    getPurchases()
-      .then((purchases) => setPurchases(purchases))
-      .catch((err) => alert(err?.response?.data?.message || 'Something went wrong.'));
-  }, []);
+    //@ts-ignore
+    if (data) setPurchases(data.data.purchases);
+    //@ts-ignore
+    if (error) alert(error?.response?.data?.messsage || 'Something went wrong!');
+  }, [data, error]);
 
   return (
     <div className="orders__list">

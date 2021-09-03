@@ -7,7 +7,7 @@ const router = express.Router();
 router.use(authController.protect);
 
 router.get('/myWishlists', wishlistController.getMyWishlists);
-router.delete('/myWishlists/:productId', wishlistController.deleteMyWishlist)
+router.delete('/myWishlists/:id', wishlistController.deleteMyWishlist)
 
 router
   .route('/')

@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { useState, useEffect, useRef } from 'react';
 import { BsChevronLeft, BsChevronRight } from 'react-icons/bs';
+import useAxios from '../../hooks/useAxios';
 import { ProductResponseType } from '../../types/APIResponseTypes';
 import Spinner from '../Utils/Spinner';
 import Product from './Product';
@@ -17,14 +18,12 @@ const ProductRow: React.FC<ProductRowProps> = (props) => {
   const leftButtonRef = useRef<HTMLButtonElement>(null);
   const rightButtonRef = useRef<HTMLButtonElement>(null);
 
-  const getProducts = async (): Promise<ProductResponseType[]> => {
-    const { data } = await axios.get(props.url);
-    return data.data.products;
-  };
+  const { data } = useAxios(props.url, 'GET');
 
   useEffect(() => {
-    getProducts().then(products => setProducts(products));
-  }, []);
+    //@ts-ignore
+    if (data) setProducts(data.data.products);
+  }, [data]);
 
   const slide = (type: 'left' | 'right'): void => {
     const scrollPixels = (productRowRef.current!.firstChild as HTMLDivElement).offsetWidth * 3;

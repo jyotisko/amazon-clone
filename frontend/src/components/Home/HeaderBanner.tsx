@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { BsChevronLeft, BsChevronRight } from 'react-icons/bs';
+import useAxios from '../../hooks/useAxios';
 import { BannerResponseType } from '../../types/APIResponseTypes';
 import Spinner from '../Utils/Spinner';
 
@@ -9,15 +10,12 @@ const HeaderBanner: React.FC = () => {
   const [banners, setBanners] = useState<BannerResponseType[]>([]);
   const slidesRef = useRef<HTMLDivElement>(null);
 
-  const fetchBanners = async (): Promise<BannerResponseType[]> => {
-    const { data } = await axios.get(`${process.env.REACT_APP_API_URL}/banners`);
-    const banners = data.data.banners;
-    return banners;
-  };
+  const { data } = useAxios(`${process.env.REACT_APP_API_URL}/banners`, 'GET');
 
   useEffect(() => {
-    fetchBanners().then((banners) => setBanners(banners));
-  }, []);
+    //@ts-ignore
+    if (data) return setBanners(data.data.banners);
+  }, [data]);
 
   const slide = (type: 'left' | 'right'): void => {
     const slidesElement = slidesRef.current!;

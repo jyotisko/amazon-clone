@@ -1,15 +1,24 @@
-import { ProductResponseType } from '../../types/APIResponseTypes';
+import { WishlistResponseType } from '../../types/APIResponseTypes';
 import GridProduct from './GridProduct';
 
 export interface GridProps {
-  products: ProductResponseType[];
+  wishlists: WishlistResponseType[];
   onItemRemove: (productId: string) => void;
 };
 
-const Grid: React.FC<GridProps> = ({ products, onItemRemove }) => {
+const Grid: React.FC<GridProps> = ({ wishlists, onItemRemove }) => {
   return (
     <div className="wishlist__grid">
-      {products.map((product) => <GridProduct key={product._id} product={product} onItemRemove={onItemRemove} />)}
+      {
+        wishlists.map((item) => {
+          return <GridProduct
+            key={item._id}
+            wishlistId={item._id}
+            product={item.product}
+            onItemRemove={onItemRemove}
+          />
+        })
+      }
     </div>
   );
 };
