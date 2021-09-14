@@ -1,14 +1,55 @@
+const mongoose = require('mongoose');
 const Review = require('../models/reviewModel');
 const AppError = require('../utils/AppError');
 const catchAsync = require('../utils/catchAsync');
 
-exports.getAllReviews = catchAsync(async (_req, res, _next) => {
-  const reviews = await Review.find();
+const getReviewStats = async (productId) => {
+  const decideSum = (rating) => {
+    return {
+      '$sum': {
+        '$cond': [{ '$eq': ['$rating', rating] }, 1, 0]
+      },
+    };
+  };
+
+  const [stats] = await Review.aggregate([
+    {
+      $match: {
+        product: mongoose.Types.ObjectId(productId)
+      }
+    },
+    {
+      $group: {
+        _id: null,
+        ratingsWith5Star: decideSum(5),
+        ratingsWith4Star: decideSum(4),
+        ratingsWith3Star: decideSum(3),
+        ratingsWith2Star: decideSum(2),
+        ratingsWith1Star: decideSum(1),
+        totalRatings: { $sum: 1 }
+      }
+    }
+  ]);
+
+  return stats;
+};
+
+exports.getAllReviews = catchAsync(async (req, res, _next) => {
+  const filter = {};
+  let stats = null;
+
+  if (req.params.productId) {
+    filter.product = req.params.productId;
+    stats = await getReviewStats(req.params.productId);
+  }
+
+  const reviews = await Review.find(filter);
 
   res.status(200).json({
     status: 'success',
     data: {
-      reviews: reviews
+      reviews: reviews,
+      stats: stats
     }
   });
 });

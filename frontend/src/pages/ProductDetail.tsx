@@ -12,6 +12,8 @@ import Description from '../components/ProductDetail/Description';
 import Information from '../components/ProductDetail/Information';
 import Footer from '../components/Footer/Footer';
 import useAxios from '../hooks/useAxios';
+import ChokingHazard from '../components/ProductDetail/ChokingHazard';
+import Reviews from '../components/ProductDetail/Reviews';
 
 const ProductDetail: React.FC = () => {
   const dispatch = useDispatch();
@@ -43,6 +45,11 @@ const ProductDetail: React.FC = () => {
               <Banners banners={product.imageBanners} />
               <Description description={product.description} />
               <Information product={product} />
+              <ChokingHazard
+                isChokingHazard={product.isChokingHazard || false}
+                chokingHazardText={product.isChokingHazardText || ''}
+              />
+              <Reviews productId={product._id} ratingsAverage={product.ratingsAverage} />
             </>
           ) : (
             <Spinner size={80} />

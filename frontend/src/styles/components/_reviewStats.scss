@@ -1,0 +1,54 @@
+.review-stats {
+  &__title { 
+    font-size: 2.4rem;
+    font-weight: 600;
+  }
+
+  &__average-rating {
+    font-size: 1.4rem;
+    font-weight: 500;
+    margin-bottom: 1rem;
+  }
+
+  &__total-ratings {
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: $color-gray-light;
+    margin-bottom: 1rem;
+  }
+
+  &__rating-row {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 10% 70% 10%;
+    grid-template-rows: 2.6rem;
+    grid-column-gap: 1rem;
+    align-items: center;
+
+    &:not(:last-child) { margin-bottom: 0.6rem; }
+    
+    &__rating,
+    &__percentage { 
+      font-weight: 400; 
+      @include link(1.3rem);
+      width: 100%;
+    }
+  }
+
+  &__bar {
+    position: relative;
+    width: 100%;
+    border: 1px solid rgba($color-gray-light, 0.2);
+    height: 100%;
+    border-radius: 0.6rem;
+  }
+
+  &__fill {
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    background-color: $color-yellow-medium;
+    border-radius: 0.6rem;
+  }
+}

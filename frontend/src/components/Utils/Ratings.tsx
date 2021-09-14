@@ -3,7 +3,7 @@ import { AiOutlineStar, AiFillStar } from 'react-icons/ai';
 
 export interface RatingsProps {
   ratingsAverage: number;
-  ratingsQuantity: number;
+  ratingsQuantity?: number;
   className?: string;
 };
 
@@ -16,7 +16,7 @@ const Ratings: React.FC<RatingsProps> = ({ ratingsAverage, ratingsQuantity, clas
           else return <i key={index} className="icon icon--star icon--star--outline ratings__icon"><AiOutlineStar /></i>;
         })
       }
-      <a href="#" className="ratings__quantity">{ratingsQuantity} ratings</a>
+      {ratingsQuantity && <a href="#" className="ratings__quantity">{ratingsQuantity} ratings</a>}
     </div>
   );
 };

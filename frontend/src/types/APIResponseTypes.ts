@@ -68,3 +68,30 @@ export interface PurchasesResponseType {
   totalPrice: number;
   createdAt: Date;
 };
+
+export interface ReviewResponseType {
+  _id: string;
+  user: {
+    _id: string;
+    photo: string;
+    name: string;
+  };
+  product: string;
+  rating: number;
+  reviewTitle: string;
+  reviewDescription: string;
+};
+
+export interface ReviewStatsType {
+  ratingsWith5Star: number;
+  ratingsWith4Star: number;
+  ratingsWith3Star: number;
+  ratingsWith2Star: number;
+  ratingsWith1Star: number;
+  totalRatings: number;
+};
+
+export interface SingleProductReview {
+  reviews: ReviewResponseType[];
+  stats: ReviewStatsType;
+};

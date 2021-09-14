@@ -98,14 +98,14 @@ const productSchema = new mongoose.Schema({
   isChokingHazard: {
     type: Boolean
   },
-  chookingHazardText: {
+  chokingHazardText: {
     type: String,
     validate: {
       validator: function () {
         return this.isChokingHazard;
       },
       message: 'Product must be marked as a choking hazard before setting the choking hazard text!'
-    }
+    },
   },
   warrantyDetails: {
     type: String,
