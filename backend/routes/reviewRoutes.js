@@ -6,8 +6,8 @@ const router = express.Router({ mergeParams: true });
 
 router
   .route('/')
-  .get(reviewController.getAllReviews)
-  .post(authController.protect, authController.restrictTo('admin', 'user'), reviewController.verifyReview, reviewController.createNewReview);
+  .get(authController.putUserInResponse, reviewController.getAllReviews)
+  .post(authController.protect, authController.restrictTo('admin', 'user'), reviewController.checkIfUserHasAlreadyReviewed, reviewController.createNewReview);
 
 router
   .route('/:id')

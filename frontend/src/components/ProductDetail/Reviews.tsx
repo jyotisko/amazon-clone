@@ -1,9 +1,12 @@
 import axios from 'axios';
 import React, { useEffect, useRef, useState } from 'react';
+import { useSelector, RootStateOrAny } from 'react-redux';
 import { ReviewResponseType, ReviewStatsType, SingleProductReview } from '../../types/APIResponseTypes';
+import { authStateType } from '../../types/stateTypes';
 import Spinner from '../Utils/Spinner';
 import ReviewsList from './ReviewsList';
 import ReviewStats from './ReviewStats';
+import WriteAReview from './WriteAReview';
 
 interface ReviewsProps {
   productId: string;
@@ -11,11 +14,14 @@ interface ReviewsProps {
 };
 
 const Reviews: React.FC<ReviewsProps> = ({ productId, ratingsAverage }) => {
+  const auth: authStateType = useSelector((state: RootStateOrAny) => state.auth);
   const sectionRef = useRef<HTMLDivElement>(null);
   const [hasScrolled, setHasScrolled] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [reviews, setReviews] = useState<ReviewResponseType[]>([]);
-  const [stats, setStats] = useState<ReviewStatsType>();
+  const [stats, setStats] = useState<ReviewStatsType | null>(null);
+  const [hasReviewed, setHasReviewed] = useState<boolean>(false);
+  const [hasPurchased, setHasPurchased] = useState<boolean>(false);
 
   // Detect if user scrolls to the reviews section
   useEffect(() => {
@@ -49,6 +55,8 @@ const Reviews: React.FC<ReviewsProps> = ({ productId, ratingsAverage }) => {
     getReviews().then((data: SingleProductReview) => {
       setReviews(data.reviews);
       setStats(data.stats);
+      setHasReviewed(data.hasReviewed);
+      setHasPurchased(data.hasPurchased);
     }).finally(() => setIsLoading(false));
   }, [hasScrolled]);
 
@@ -58,8 +66,9 @@ const Reviews: React.FC<ReviewsProps> = ({ productId, ratingsAverage }) => {
       {
         !isLoading && (
           <>
-            {stats && <ReviewStats stats={stats} ratingsAverage={ratingsAverage} />}
-            {reviews && <ReviewsList reviews={reviews} />}
+            {auth.isLoggedIn && hasPurchased && !hasReviewed && <WriteAReview productId={productId} />}
+            {<ReviewStats stats={stats} ratingsAverage={ratingsAverage} />}
+            {<ReviewsList reviews={reviews} />}
           </>
         )
       }

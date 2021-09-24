@@ -94,4 +94,6 @@ export interface ReviewStatsType {
 export interface SingleProductReview {
   reviews: ReviewResponseType[];
   stats: ReviewStatsType;
+  hasReviewed: boolean;
+  hasPurchased: boolean;
 };

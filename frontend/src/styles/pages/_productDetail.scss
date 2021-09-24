@@ -75,7 +75,30 @@
     min-height: 30rem;
     width: 100%;
     display: grid;
+    grid-template-areas: 'write write'
+                         'stats reviews';
     grid-template-columns: 35% 73%;
     grid-column-gap: 2rem;
+
+    .review-write {
+      grid-area: write;
+      width: 100%;
+    }
+
+    .review-stats {
+      grid-area: stats;
+      width: 100%;
+    }
+
+    .grid-reviews {
+      grid-area: reviews;
+      width: 100%;
+    }
+
+    .review-none {
+      color: $color-red-medium;
+      font-weight: 500;
+      font-size: 1.4rem;
+    }
   }
 }

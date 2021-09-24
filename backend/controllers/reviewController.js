@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const Review = require('../models/reviewModel');
+const Purchase = require('../models/purchaseModel');
 const AppError = require('../utils/AppError');
 const catchAsync = require('../utils/catchAsync');
 
@@ -37,24 +38,36 @@ const getReviewStats = async (productId) => {
 exports.getAllReviews = catchAsync(async (req, res, _next) => {
   const filter = {};
   let stats = null;
+  let hasReviewed = false;
+  let hasPurchased = false;
 
-  if (req.params.productId) {
-    filter.product = req.params.productId;
-    stats = await getReviewStats(req.params.productId);
-  }
+  if (req.params.productId) filter.product = req.params.productId;
 
   const reviews = await Review.find(filter);
+
+  if (req.params.productId) {
+    // Calculate statistics
+    stats = await getReviewStats(req.params.productId);
+
+    // Check if user has already reviewed
+    if (reviews.findIndex((review) => String(review.user._id) === String(req?.user?._id)) >= 0) hasReviewed = true;
+
+    // Check if user has bought the product
+    if (await Purchase.findOne({ product: req.params.productId, user: req.user._id })) hasPurchased = true;
+  }
 
   res.status(200).json({
     status: 'success',
     data: {
       reviews: reviews,
-      stats: stats
+      stats: stats,
+      hasReviewed: hasReviewed,
+      hasPurchased: hasPurchased
     }
   });
 });
 
-exports.verifyReview = catchAsync(async (req, _res, next) => {
+exports.checkIfUserHasAlreadyReviewed = catchAsync(async (req, _res, next) => {
   const review = await Review.findOne({
     user: req.body.user || req.user._id,
     product: req.body.product

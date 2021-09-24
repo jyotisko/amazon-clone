@@ -1,4 +1,6 @@
 .review-stats {
+  grid-area: stats;
+  
   &__title { 
     font-size: 2.4rem;
     font-weight: 600;

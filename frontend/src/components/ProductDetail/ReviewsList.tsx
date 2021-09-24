@@ -13,7 +13,7 @@ const ReviewsList: React.FC<ReviewsListProps> = ({ reviews }) => {
   return (
     <section className="review-list">
       <h1 className="review-list__title">Recent reviews</h1>
-
+      {reviews.length === 0 && <h2 className="review-none">Be the first person to review this product!</h2>}
       {reviews.slice(0, MAX_REVIEWS_TO_SHOW_PER_PRODUCT).map((review) => {
         return (
           <div className="review-list__item" key={review._id}>
