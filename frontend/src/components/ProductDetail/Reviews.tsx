@@ -43,7 +43,7 @@ const Reviews: React.FC<ReviewsProps> = ({ productId, ratingsAverage }) => {
 
   // If user has scrolled, fetch data and render reviews
   const getReviews = async () => {
-    const { data } = await axios.get(`/api/v1/products/${productId}/reviews`, {
+    const { data } = await axios.get(`${process.env.REACT_APP_API_URL}/products/${productId}/reviews`, {
       withCredentials: true
     });
     return data.data;
