@@ -1,11 +1,11 @@
 $padding: 2rem;
 
 .product-row {
+  position: relative;
   height: 320px;
   width: 100%;
   background-color: $color-white-light;
   padding: 1rem $padding;
-  position: relative;
   margin-bottom: 3rem;
 
   &:hover &__btn {
@@ -76,7 +76,7 @@ $padding: 2rem;
     display: flex;
     overflow-x: scroll;
     display: grid;
-    grid-template-columns: repeat(15, 350px);
+    grid-template-columns: repeat(10, 350px);
     grid-template-rows: 100%;
     grid-column-gap: 2rem;
     align-items: center;
