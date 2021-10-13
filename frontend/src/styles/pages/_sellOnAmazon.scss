@@ -1,0 +1,24 @@
+.sell-on-amazon {
+  position: relative;
+  min-height: 40vh;
+  width: 100%;
+  background: $color-white-light;
+  overflow: hidden;
+
+  &__header {
+    padding: 10rem 12vw;
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__wave {
+    height: 100%;
+    position: absolute;
+    display: block;
+    bottom: -5%;
+    left: 0%;
+    z-index: 1;
+  }
+}

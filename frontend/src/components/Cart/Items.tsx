@@ -12,7 +12,7 @@ const Items: React.FC = () => {
     <section className="cart__items">
       <Heading />
       {!cart.items && <Spinner size={60} styles={{ margin: '-4rem' }} />}
-      {cart.items && cart.items.length === 0 && <h1 className="cart__empty">You cart is empty</h1>}
+      {cart.items && cart.items.length === 0 && <h1 className="cart__empty">Your cart is empty</h1>}
       {cart.items && cart.items.map((item, index) => <Item key={item.product._id + index} item={item} />)}
     </section>
   );

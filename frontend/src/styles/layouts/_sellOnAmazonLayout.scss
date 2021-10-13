@@ -1,0 +1,27 @@
+.sell-on-amazon {
+  &__header {
+    &__texts {
+      z-index: 5;
+      &__main {
+        font-size: 8rem;
+        font-weight: 800;
+        line-height: 120%;
+        padding-bottom: 2rem;
+        color: $color-blue-dark;
+      }
+
+      &__paragraph {
+        font-size: 2rem;
+        color: $color-gray-light;
+        font-weight: 500;
+        padding-bottom: 2rem;
+      }
+    }
+
+    &__image {
+      height: 55rem;
+      width: 55rem;
+      z-index: 5;
+    }
+  }
+}

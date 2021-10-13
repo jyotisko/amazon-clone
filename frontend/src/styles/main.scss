@@ -29,6 +29,7 @@
 @import './components/reviewStats';
 @import './components/reviewList';
 @import './components/reviewWrite';
+@import './components/sellerRegisterPopup';
 
 @import './layouts/nav';
 @import './layouts/footer';
@@ -38,6 +39,7 @@
 @import './layouts/history';
 @import './layouts/buyNav';
 @import './layouts/404Nav';
+@import './layouts/sellOnAmazonLayout';
 
 @import './pages/home';
 @import './pages/productDetail';
@@ -51,3 +53,4 @@
 @import './pages/404';
 @import './pages/nodes';
 @import './pages/orders';
+@import './pages/sellOnAmazon';

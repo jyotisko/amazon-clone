@@ -15,6 +15,7 @@ const wishlistRouter = require('./routes/wishlistRoutes');
 const bannerRouter = require('./routes/bannerRoutes');
 const cartRouter = require('./routes/cartRoutes');
 const purchaseRouter = require('./routes/purchaseRouter');
+const becomeSellerRouter = require('./routes/becomeSellerRoutes');
 const purchaseController = require('./controllers/purchaseController');
 const AppError = require('./utils/AppError');
 
@@ -40,6 +41,7 @@ app.use('/api/v1/wishlists', wishlistRouter);
 app.use('/api/v1/banners', bannerRouter);
 app.use('/api/v1/carts', cartRouter);
 app.use('/api/v1/purchases', purchaseRouter);
+app.use('/api/v1/becomeSeller', becomeSellerRouter);
 
 // ERROR HANDLING
 app.all('*', (req, _, next) => {

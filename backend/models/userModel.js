@@ -76,6 +76,10 @@ const userSchema = new mongoose.Schema({
     type: Boolean,
     default: true,
   },
+  isGettingVerifiedAsSeller: {
+    type: Boolean,
+    default: false
+  },
   passwordChangedAt: Date,
   createdAt: {
     type: Date,

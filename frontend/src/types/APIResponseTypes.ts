@@ -44,6 +44,7 @@ export interface UserResponseType {
   city: string;
   country: string;
   state: string;
+  isGettingVerifiedAsSeller: boolean;
 };
 
 export interface WishlistResponseType {

@@ -1,5 +1,4 @@
 .icon {
-
   &--star {
     color: $color-yellow-medium;
     font-size: 2rem;
@@ -17,5 +16,10 @@
 
   &--hazard {
     font-size: 4rem;
+  }
+
+  &--close {
+    font-size: 1.8rem;
+    cursor: pointer;
   }
 }

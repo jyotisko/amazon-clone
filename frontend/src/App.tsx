@@ -24,6 +24,7 @@ const Buy = lazy(() => import('./pages/Buy'));
 const Page404 = lazy(() => import('./pages/404'));
 const Nodes = lazy(() => import('./pages/Nodes'));
 const Orders = lazy(() => import('./pages/Orders'));
+const SellOnAmazon = lazy(() => import('./pages/SellOnAmazon'));
 
 const App: React.FC = () => {
   const dispatch = useDispatch();
@@ -86,6 +87,7 @@ const App: React.FC = () => {
           <Route path='/buy' exact component={Buy} />
           <Route path='/nodes/:node' exact component={Nodes} />
           <Route path='/orders' exact component={Orders} />
+          <Route path='/sell-on-amazon' exact component={SellOnAmazon} />
           <Route component={Page404} />
         </Switch>
       </Suspense>
